@@ -1,10 +1,10 @@
- 
 import './App.css';
+import RouteContainer from './route/Route';
 
 function App() {
   return (
     <div className="App">
-     hello world dfff
+        <RouteContainer />
     </div>
   );
 }
