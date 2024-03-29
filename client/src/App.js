@@ -1,10 +1,10 @@
- 
 import './App.css';
+import RouteContainer from './route/Route';
 
 function App() {
   return (
     <div className="App">
-      <h1>first test of git</h1>
+        <RouteContainer />
     </div>
   );
 }
