@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "bootstrap-icons/font/bootstrap-icons.css";
 import loginImage from './../../assets/Login2.png';
 import axios from 'axios'
 import ErreurMessage from './../../components/message_erreur/ErreurMessage'
@@ -42,6 +41,7 @@ function Login({setShowLogin, showLogin}) {
             //console.log(res);
           } else {
             console.log(res.data.statut)
+            setErreur('');
             //navigate('/'); naviguer vers le dashboard de l'assure
           }
         })

@@ -1,6 +1,5 @@
 import React from "react";
 import "./SideBar.css";
-import { FaBars } from "react-icons/fa6";
 
 const SideBar = ({ sidebarOpener, openBar }) => {
   return (
