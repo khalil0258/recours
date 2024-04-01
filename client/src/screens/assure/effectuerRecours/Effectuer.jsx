@@ -1,7 +1,11 @@
 import React from "react";
 
 const Effectuer = () => {
-  return <div>Effectuer</div>;
+  return (
+    <div>
+      <div>effectuer</div>
+    </div>
+  );
 };
 
 export default Effectuer;

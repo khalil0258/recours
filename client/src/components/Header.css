@@ -1,18 +1,33 @@
 .header{
 color: white;
-position: fixed;
-top: 0;
+ padding-left: 2rem;
 background-color: #111827;
 width: 100%;
-padding: 0 120px;
+ position: fixed;
+ top: 0;
+ right: 0;
+ width: 77%;
 height: 60px;
 display: flex ;
-justify-content: space-between;
+ 
 font-size: 20px;
 align-items: center !important;
-
+z-index: 1000;
+transition:  0.3s all ease-in-out;
+}
+.active_header {
+    width: 100%;
 }
 
+.header_container{
+    width: 100%;
+    padding-inline: 5px;
+ 
+    display: flex ;
+justify-content: space-between;
+ 
+align-items: center !important;
+}
 .header .bar_icon{
 cursor: pointer;
 font-size: 24px;

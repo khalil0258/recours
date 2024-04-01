@@ -4,6 +4,7 @@ const db = require('./../../db/connect');
 
 // ---------login ------------
 const login = async (req, res) => {
+  console.log("je")
   const values = [
     req.body.email,
     req.body.mdp

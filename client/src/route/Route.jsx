@@ -12,8 +12,6 @@ import Home from "../screens/assure/home/Home";
 const RouteContainer = () => {
   return (
     <>
-      <Header />
-
       <Router>
         <Routes>
           {/* cette  c est la page d accueil  */}
