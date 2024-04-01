@@ -601,16 +601,15 @@ video {
 
 .main_container{
   width:77vw;
- 
+  overflow-y: scroll;
  
   /* height: 100%; */
   transition: .3 all ease-in-out;
  position: fixed;
   right: 0;
- 
-  
- 
- 
+  background-color: gray;
+  height: 100%;
+
 }
 .expand{
   /* flex-shrink: 1; */
@@ -621,5 +620,6 @@ video {
   position: fixed;
   top: 60px;
   right: 0;
-  width:77vw;
+  width:100%;
+ 
 }

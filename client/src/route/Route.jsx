@@ -15,7 +15,7 @@ const RouteContainer = () => {
       <Router>
         <Routes>
           {/* cette  c est la page d accueil  */}
-          <Route path="/accueil" element={<Landing />} />
+          <Route path="/" element={<Landing />} />
           {/* hado juste pour l assure  */}
           <Route path="/assure" element={<ProtectedRoutes isAuth={true} />}>
             <Route path="tableau_de_bord" element={<Home />} exact />

@@ -1,8 +1,9 @@
 import React from "react";
+import "./Effectuer.css";
 
 const Effectuer = () => {
   return (
-    <div>
+    <div className="effectuer">
       <div>effectuer</div>
     </div>
   );

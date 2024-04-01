@@ -9,6 +9,8 @@ const db = require('./db/connect');
 const session = require('express-session')
 //const cookieParser = require('cookie-parser')
 
+const statistiquesRoute = require('./routes/statistiquesRoute')
+
 const PORT = process.env.PORT || 4000;
 app.use(bodyParser.json());
 app.use(cors({
@@ -72,6 +74,8 @@ db.connect(function(err) {
 //routers
 app.use(`/auth`, authRoutes);         //authentification routes 
 app.use(`/recours`, recoursRoutes);         //recours  routes 
+
+app.use(statistiquesRoute); 
 
  
 

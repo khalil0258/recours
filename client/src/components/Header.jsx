@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Header.css";
-import { FaBars } from "react-icons/fa6";
 import SideBar from "./SideBar";
 
 const Header = ({ sidebarOpener, openBar }) => {
@@ -14,7 +13,7 @@ const Header = ({ sidebarOpener, openBar }) => {
           sidebarOpener(!openBar);
         }}
       >
-        <FaBars />
+        <i class="bi bi-list"></i>
       </div>
       <div className="container">
         <div className="header_container">
