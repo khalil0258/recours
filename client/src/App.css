@@ -584,42 +584,15 @@ video {
   margin: 0;
   padding: 0;
 }
-.app{
+ body{
   overflow-x: hidden;
+ }
+.app{
+  /* overflow-x: hidden; */
 }
  
-.app_container{
-  display: flex;
-  width: 100vw;
-
-}
 .container{  
   width: 90%;
   margin:0 auto;
  
  }
-
-.main_container{
-  width:77vw;
-  overflow-y: scroll;
- 
-  /* height: 100%; */
-  transition: .3 all ease-in-out;
- position: fixed;
-  right: 0;
-  background-color: gray;
-  height: 100%;
-
-}
-.expand{
-  /* flex-shrink: 1; */
-  width: 100vw;
-  left: 0;
-}
-.main{
-  position: fixed;
-  top: 60px;
-  right: 0;
-  width:100%;
- 
-}
