@@ -3,8 +3,8 @@
     background-color: #F9FBFC;
     height: 100dvh;
     position: -webkit-sticky;
-    position: sticky;
-  /* height: 100vh;  */
+    position: fixed;
+ left: 0;
     width: 23vw;
     color: black;
     box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
@@ -13,9 +13,9 @@
      flex-grow: 1;
 }
 .hidden{
-width: 0 !important;
-position: relative;
-left: -100%;
+/* width: 0 !important; */
+/* position: relative; */
+left: -32vw;
 /* flex-shrink: 0; */
 
 }

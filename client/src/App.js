@@ -17,16 +17,13 @@ function App() {
 
   return (
     <div className="App">
-     <div className='app_container'>
-      
-      <div className='main_container'>
-         
+ 
         <RouteContainer/>
-      </div>
+     
      </div>
       
 
-    </div>
+   
   );
 }
 

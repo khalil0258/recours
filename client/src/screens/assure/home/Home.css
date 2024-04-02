@@ -25,7 +25,8 @@
     align-items: center;
     flex-direction: column;
     /* background-color: #eeeff1; */
-	background-color: #F9FBFC;
+	/* background-color: #F9FBFC; */
+	/* background-color: red; */
 }
 .accueil-titre{
     width: 100%;

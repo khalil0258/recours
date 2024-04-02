@@ -1,21 +1,21 @@
-.app_container .main_container .header{
+.app_container .maine_container .header{
 color: white;
  padding-left: 2rem;
 background-color: #111827;
-width:100%;
- 
- 
- 
+/* width:100%; */
+ position: fixed;
+  right: 0;
+left: 23vw; 
 height: 60px;
 display: flex ;
  
 font-size: 20px;
 align-items: center !important;
 z-index: 1000;
-transition:  0.3s all ease-in-out;
+transition:  0.3s left ease-in-out;
 }
 .active_header {
-    width: 100vw !important;
+   left: 0 !important;
 
 }
 

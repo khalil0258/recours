@@ -585,10 +585,10 @@ video {
   padding: 0;
 }
  body{
-  overflow-x: hidden;
+  overflow-x: hidden !important;
  }
 .app{
-  /* overflow-x: hidden; */
+  overflow-x: hidden !important;
 }
  
 .container{  
