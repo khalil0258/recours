@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import SideBar from "./SideBar";
+import { Link } from "react-router-dom";
 
 const Header = ({ sidebarOpener, openBar }) => {
-  console.log(openBar);
+  const [laydown, setLaydown] = useState(false);
+  useEffect(() => {
+    setLaydown(false);
+  }, []);
   return (
     <div className={`header ${!openBar && "active_header"}`}>
       {/* icon div  */}
@@ -22,7 +26,10 @@ const Header = ({ sidebarOpener, openBar }) => {
             <p>Accueil</p>
           </div>
           {/* the account div  */}
-          <div className="account_holder">
+          <div
+            className="account_holder"
+            onClick={() => setLaydown((prev) => !prev)}
+          >
             {/* the circle  */}
             <div className="account_circle">
               <span>HB</span>

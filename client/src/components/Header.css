@@ -22,7 +22,7 @@
 .header_container{
     width: 100%;
     padding-inline: 5px;
- 
+ position: relative;
     display: flex ;
     justify-content: space-between;
  
@@ -44,9 +44,9 @@ align-self: center;
      
     align-items: center; 
     cursor: pointer;
-     
- 
-  overflow: hidden;
+    
+    overflow: hidden;
+    position: relative;
 
 }
 .header .account_holder .account_circle{
@@ -67,4 +67,4 @@ align-self: center;
    top: 5px;
   
 }
- 
+  

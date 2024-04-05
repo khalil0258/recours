@@ -7,6 +7,7 @@ import Effectuer from "../screens/assure/effectuerRecours/Effectuer";
 import Consulter_rec from "../screens/assure/consulter_rec/Consulter_rec";
 import Consulter_D from "../screens/assure/consulter_D/Consulter_D";
 import Home from "../screens/assure/home/Home";
+import Compte from "../screens/assure/Compte/Compte";
 
 const RouteContainer = () => {
   return (
@@ -23,6 +24,7 @@ const RouteContainer = () => {
             <Route path="soumetre_recours" element={<Effectuer />} exact />
             <Route path="consulter_recours" element={<Consulter_rec />} exact />
             <Route path="consulter_decisions" element={<Consulter_D />} exact />
+            <Route path="mon_profile" element={<Compte />} exact />
           </Route>
           {/* apres ndiro ta3 secretaire  */}
         </Routes>

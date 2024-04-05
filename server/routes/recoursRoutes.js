@@ -3,7 +3,7 @@ const db = require("../db/connect");
 const upload1 = require("../middleware/uploader");
 const router = express.Router();
 const path = require('path');
-const { soumetreRecours, soumetre_piece, getRecours } = require("../controllers/recours/recoursControllers");
+const { soumetreRecours, soumetre_piece, getRecours, verfication } = require("../controllers/recours/recoursControllers");
 
  
 
@@ -11,11 +11,11 @@ const { soumetreRecours, soumetre_piece, getRecours } = require("../controllers/
 // routes 
 
  
-const multipleUpload=upload1.fields([{name:"file1"},  { name: 'file2'}]);
+const multipleUpload=upload1.fields([{name:"file1"},{ name: 'file2'},{ name:"file3"}]);
 
 //API de soummissiom de recours
-router.post("/soumetreRecours",soumetreRecours,multipleUpload,soumetre_piece);
-
+router.post("/soumetreRecours",soumetreRecours ,multipleUpload,soumetre_piece);
+router.get('/verification',verfication)
 //API pour la consultation des recours
 router.get("/getRecours", getRecours) ;
 

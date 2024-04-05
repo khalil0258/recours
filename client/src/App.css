@@ -596,3 +596,21 @@ video {
   margin:0 auto;
  
  }
+.flex{
+  display: flex !important;
+  gap: .5rem;
+  align-items: center;
+
+  justify-content: flex-start !important;
+ 
+}
+ 
+
+.flex >.files_sty{
+  padding: .2rem .5rem;
+  background-color: gray;
+  cursor: pointer;
+  /* margin-top: .5rem; */
+  border-radius: 25px;
+}
+ 

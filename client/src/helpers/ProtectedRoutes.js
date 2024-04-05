@@ -6,7 +6,7 @@ import SideBar from "../components/SideBar";
 import './protected.css'
 
 function ProtectedRoutes({ isAuth }) {
-    const [openBar, setOpenBar] = useState(false);
+    const [openBar, setOpenBar] = useState(true);
   
     const sidebarOpener = (value) => {
       setOpenBar(value);

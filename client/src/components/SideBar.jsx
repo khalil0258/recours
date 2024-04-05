@@ -8,8 +8,13 @@ const SideBar = ({ openBar }) => {
   // const [pathname,setPathname]=use
   return (
     <div className={`sideBar ${!openBar && "hidden"} `}>
-      {/* icon div  */}
+      {/* logo div  */}
 
+      <div className="logo">
+        <h2>
+          <span>Télé</span>-Recours
+        </h2>
+      </div>
       <div className="links_sidebar">
         <div>
           <Link to="tableau_de_bord" className="link">
@@ -54,6 +59,15 @@ const SideBar = ({ openBar }) => {
               }
             >
               Consulter les decisions
+            </p>
+          </Link>
+          <Link to="mon_profile" className="link">
+            <p
+              className={
+                parame.pathname.split("/")[2] === "mon_profile" ? `active` : ""
+              }
+            >
+              Mon Profile
             </p>
           </Link>
         </div>
