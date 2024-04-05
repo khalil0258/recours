@@ -1,6 +1,7 @@
 .app_container{
     display: flex;
     width: 100%;
+    align-items: flex-start;
     /* justify-self: flex-end; */
     /* position: fixed; */
     
@@ -9,13 +10,14 @@
 
 .app_container .maine_container{
     /* overflow-y: auto; */
-    width: 77vw;;
+    width: 76.6vw;
   overflow-x: hidden;
     height: 100vh;
      background-color:#F9FBFC;
      transition:  0.3s all ease-in-out;
      position: fixed;
      right: 0;
+     /* left: -23vw; */
   
   }
   .expand{

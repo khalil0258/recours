@@ -2,24 +2,37 @@
    
     background-color: #F9FBFC;
     height: 100dvh;
-    position: -webkit-sticky;
+ 
     position: fixed;
- left: 0;
+    left: 0;
     width: 23vw;
     color: black;
-    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
+    overflow: visible;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5) !important;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
     transition:  0.3s left ease-in-out;
-    z-index: 100;
-     flex-grow: 1;
+    /* z-index: 1; */
+     flex: 1;
+     
 }
-.hidden{
-/* width: 0 !important; */
-/* position: relative; */
-left: -32vw;
-/* flex-shrink: 0; */
+.hidden{ 
+left: -32vw !important;
 
 }
+/* logo  */
+.logo{
+  text-transform: capitalize;
+  font-size: 34px;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+}
+.logo span{
+  color: #3F51B5;
+}
  
 .links_sidebar {
     width: 100%;
