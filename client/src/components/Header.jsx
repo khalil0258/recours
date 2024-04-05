@@ -13,7 +13,7 @@ const Header = ({ sidebarOpener, openBar }) => {
           sidebarOpener(!openBar);
         }}
       >
-        <i class="bi bi-list"></i>
+        <i className="bi bi-list"></i>
       </div>
       <div className="container">
         <div className="header_container">

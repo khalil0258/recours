@@ -77,4 +77,21 @@ const soumetre_piece=(req,res)=>{
 }
 
 
-module.exports={soumetreRecours,soumetre_piece}
+
+//get recours
+const getRecours = (req, res)=>{
+
+    const sql='select * from recours';
+    db.query(sql, (err, result)=>{
+        if(err)
+            return res.json({statut: "erreur", message: "Une erreur est survenue"});
+        else
+            return res.json({statut: "success", resultat: result})
+    })
+}
+
+
+
+
+
+module.exports={soumetreRecours,soumetre_piece, getRecours}

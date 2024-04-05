@@ -1,18 +1,18 @@
 .app_container .maine_container .header{
-color: white;
- padding-left: 2rem;
-background-color: #111827;
-/* width:100%; */
- position: fixed;
+  color: white;
+  padding-left: 2rem;
+  background-color: #111827;
+  /* width:100%; */
+  position: fixed;
   right: 0;
-left: 23vw; 
-height: 60px;
-display: flex ;
- 
-font-size: 20px;
-align-items: center !important;
-z-index: 1000;
-transition:  0.3s left ease-in-out;
+  left: 23vw; 
+  height: 60px;
+  display: flex ;
+  
+  font-size: 20px;
+  align-items: center !important;
+  z-index: 100;
+  transition:  0.3s left ease-in-out;
 }
 .active_header {
    left: 0 !important;

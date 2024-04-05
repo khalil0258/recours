@@ -18,17 +18,22 @@ function ProtectedRoutes({ isAuth }) {
   }
 
  
-  return (<div>
-     <div className='app_container'>
+  return (
+  <div>
+    <div className='app_container'>
      <SideBar  openBar={openBar} />
       <div className={`maine_container ${!openBar && "expand"}`}>
         <Header sidebarOpener={sidebarOpener} openBar={openBar}/>
-        <div className={`main ${!openBar &&"expand"}`}><Outlet/></div>
+
+        <div className={`main ${!openBar &&"expand"}`}>
+          <Outlet/>
+        </div>
         
       
       </div>
+    </div>
   </div>
-  </div>);
+  );
 }
 
 export default ProtectedRoutes;
