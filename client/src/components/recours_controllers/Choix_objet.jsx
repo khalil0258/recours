@@ -66,7 +66,7 @@ const Choix_objet = ({ handleSelectedStep, setFormData, formData }) => {
   ];
   return (
     <div className="choix_objet_body">
-      <h3>Choix Objet</h3>
+      <h3>Choix Objet </h3>
       {/* les objets existes  */}
       <div className="filters">
         <select
