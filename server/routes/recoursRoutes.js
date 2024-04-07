@@ -3,7 +3,7 @@ const db = require("../db/connect");
 const upload1 = require("../middleware/uploader");
 const router = express.Router();
 const path = require('path');
-const { soumetreRecours, soumetre_piece, getRecours, verfication } = require("../controllers/recours/recoursControllers");
+const { soumetreRecours, soumetre_piece, getRecours, verfication, getDocuments } = require("../controllers/recours/recoursControllers");
 
  
 
@@ -18,6 +18,9 @@ router.post("/soumetreRecours",soumetreRecours ,multipleUpload,soumetre_piece);
 router.get('/verification',verfication)
 //API pour la consultation des recours
 router.get("/getRecours", getRecours) ;
+
+//API pour la recuperation des documents
+router.get("/getDocuments", getDocuments) ;
 
 
 

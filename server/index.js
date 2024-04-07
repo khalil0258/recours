@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const path = require('path');
 const bodyParser = require("body-parser");
 require("dotenv/config");
 const authRoutes = require('./routes/authRoutes')
@@ -18,6 +19,12 @@ app.use(cors({
   methods: ["POST", "GET", "DELETE", "UPDATE"],
   credentials: true 
 }));
+
+//app.use(express.static('assure')) ;
+// Définir le dossier statique pour les fichiers PDF
+app.use('/assure', express.static('./assure'));
+
+
 
 app.options("*", cors());
 

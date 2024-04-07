@@ -29,7 +29,7 @@ const soumetreRecours=async (req,res,next)=>{
    
           
           req.app.locals.path={
-                  id_assure:12,
+                  id_assure:17,
                   id_recours:lastInsertedId
               };
   
@@ -82,7 +82,7 @@ else if(i<2){
     const sql='insert into pieces (nom,chemin,id_recours,type) Values ?';
     console.log("values",values);
 
-    db.query(sql,[...values],(err,result)=>{
+    db.query(sql,[values],(err,result)=>{
         if(err)return res.json(err);
         return res.json({success:"Recours ajoute avec succes"})
     })
@@ -151,4 +151,22 @@ const verfication=async(req,res)=>{
     }
 }
 
-module.exports={soumetreRecours,soumetre_piece,verfication, getRecours}
+
+
+
+const getDocuments = (req, res) => {
+  
+  const sql='select * from pieces where id_recours = ?';
+    db.query(sql, [req.query.id_recours], (err, result)=>{
+        if(err)
+            return res.json({statut: "erreur", message: "Une erreur est survenue"});
+        else
+            return res.json({statut: "success", resultat: result})
+    })
+
+}
+
+
+
+
+module.exports={soumetreRecours,soumetre_piece,verfication, getRecours, getDocuments}

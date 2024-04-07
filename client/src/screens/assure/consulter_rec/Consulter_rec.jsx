@@ -177,106 +177,106 @@ const Consulter_rec = () => {
 
   return (
     <>
-    {showDetail.afficher && <Detail setShowDetail={setShowDetail} showDetail={showDetail} />}
-    
-    <div className="container_recours">
-      <h1>Mes Recours</h1>
-
-      {/* le filter */}
-      <div className="filter">
-
-        {/* <input type="text" value={date} /> */}
-
-        <div className="showEntries">
-          <span>Afficher</span>
-          <select name="" className="showInput" onChange={showEntries}>
-            <option value="Tous">Tous</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-          <span>Recours</span>
-        </div>
-
-        <div className="dropdown">
-          <button
-            className="btn rounded-3 btn-filtrer"
-            type="button"
-            id="dropdownMenuButton1"
-            aria-expanded="false"
-            onClick={openFilter}
-          >
-            <i className="bi bi-filter me-1"></i>
-            <span>Filtrer Par</span>
-          </button>
-          <ul
-            className="dropdown-menu dropdown-menu-end"
-            aria-labelledby="dropdownMenuButton1"
-            id={dropdown ? "afficher" : "cacher"}
-          >
-            <li className="dropdown-item" onClick={afficherInput}>
-              Objet
-            </li>
-            <li className="dropdown-item" onClick={afficherInput}>
-              Date
-            </li>
-            <li className="dropdown-item" onClick={afficherInput}>
-              Commission
-            </li>
-            <li className="dropdown-item" onClick={afficherInput}>
-              Statut
-            </li>
-          </ul>
-        </div>
-
-        {/* l'input selon le filter choisi */}
-        {input1 != null && input1} 
-        {input2 != null && input2} 
-        {input3 != null && input3} 
-        {inputDate != null && inputDate} 
-
-      </div>
-
-      {/* le tableau */}
-      <table className="table table-striped responsive">
-        <thead>
-          <tr>
-            <th>Référence</th>
-            <th>Objet</th>
-            <th>Date</th>
-            <th>Commission</th>
-            <th>Statut</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-
-        {
-          recours.slice(0, (show === "" || show === "Tous") ? recours.length : parseInt(show, 10)).map((r) => (
-              
-            <tr key={r.id_recours}>
-              <td> {r.id_recours} </td>
-              <td> {r.objet} </td>
-              <td> {r.date.substr(0, 10)} </td>
-              <td> {r.commission} </td>
-              <td id={r.statut === 'traité' ? "vert" : (r.statut === 'annulé' ? 'rouge' : 'jaune')}> 
-                {r.statut} 
-              </td>
-              <td>
-                {/* <Link to={`details_recours/${r.id_recours}`} className='btn btn-primary' onClick={() => setShowDetail(true)}>Détails</Link> */}
-
-                <button className='btn btn-primary' onClick={() => setShowDetail({afficher: true, recours: r})}>Détails</button>
-              </td>
-            </tr>
-              
-          ))  
-        }
-
-        </tbody>
-      </table>
-
+      {showDetail.afficher && <Detail setShowDetail={setShowDetail} showDetail={showDetail} />}
       
-    </div>
+      <div className="container_recours">
+        <h1>Mes Recours</h1>
+
+        {/* le filter */}
+        <div className="filter">
+
+          {/* <input type="text" value={date} /> */}
+
+          <div className="showEntries">
+            <span>Afficher</span>
+            <select name="" className="showInput" onChange={showEntries}>
+              <option value="Tous">Tous</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            <span>Recours</span>
+          </div>
+
+          <div className="dropdown">
+            <button
+              className="btn rounded-3 btn-filtrer"
+              type="button"
+              id="dropdownMenuButton1"
+              aria-expanded="false"
+              onClick={openFilter}
+            >
+              <i className="bi bi-filter me-1"></i>
+              <span>Filtrer Par</span>
+            </button>
+            <ul
+              className="dropdown-menu dropdown-menu-end"
+              aria-labelledby="dropdownMenuButton1"
+              id={dropdown ? "afficher" : "cacher"}
+            >
+              <li className="dropdown-item" onClick={afficherInput}>
+                Objet
+              </li>
+              <li className="dropdown-item" onClick={afficherInput}>
+                Date
+              </li>
+              <li className="dropdown-item" onClick={afficherInput}>
+                Commission
+              </li>
+              <li className="dropdown-item" onClick={afficherInput}>
+                Statut
+              </li>
+            </ul>
+          </div>
+
+          {/* l'input selon le filter choisi */}
+          {input1 != null && input1} 
+          {input2 != null && input2} 
+          {input3 != null && input3} 
+          {inputDate != null && inputDate} 
+
+        </div>
+
+        {/* le tableau */}
+        <table className="table table-striped responsive">
+          <thead>
+            <tr>
+              <th>Référence</th>
+              <th>Objet</th>
+              <th>Date</th>
+              <th>Commission</th>
+              <th>Statut</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          {
+            recours.slice(0, (show === "" || show === "Tous") ? recours.length : parseInt(show, 10)).map((r) => (
+                
+              <tr key={r.id_recours}>
+                <td> {r.id_recours} </td>
+                <td> {r.objet} </td>
+                <td> {r.date.substr(0, 10)} </td>
+                <td> {r.commission} </td>
+                <td id={r.statut === 'traité' ? "vert" : (r.statut === 'annulé' ? 'rouge' : 'jaune')}> 
+                  {r.statut} 
+                </td>
+                <td>
+                  {/* <Link to={`details_recours/${r.id_recours}`} className='btn btn-primary' onClick={() => setShowDetail(true)}>Détails</Link> */}
+
+                  <button className='btn btn-primary' onClick={() => setShowDetail({afficher: true, recours: r})}>Détails</button>
+                </td>
+              </tr>
+                
+            ))  
+          }
+
+          </tbody>
+        </table>
+
+        
+      </div>
     
     </>
   )

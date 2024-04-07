@@ -13,7 +13,7 @@
     z-index: 1000;
     animation: anim_opacity .5s;
 }
-.boite {
+.container_detail .boite {
     position: relative;
     width: 800px;
     height: 600px;
@@ -61,7 +61,7 @@
 }
 
 /* le body de la fenetre */
-.boite-body{
+.container_detail .boite-body{
     width: 100%;
     padding: 20px;
     z-index: 1;
