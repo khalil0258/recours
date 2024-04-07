@@ -10,14 +10,15 @@ const db = require('./db/connect');
 const session = require('express-session')
 //const cookieParser = require('cookie-parser')
 
-const statistiquesRoute = require('./routes/statistiquesRoute')
+const statistiquesRoute = require('./routes/statistiquesRoute');
+const userInfos = require('./routes/userInfos')
 
 const PORT = process.env.PORT || 4000;
 
 app.use(bodyParser.json());
 app.use(cors({
   origin: ["http://localhost:3000"],
-  methods: ["POST", "GET", "DELETE", "UPDATE"],
+  methods: ["POST", "GET", "DELETE", "UPDATE","patch","PUT"],
   credentials: true 
 }));
 
@@ -56,34 +57,17 @@ db.connect(function(err) {
 
 
 //middleware
-// multer middleware 
-
-
  
 
 
-
-// app.post("/books/:title/:descript",(req,res,next)=>{
-// console.log("ahna",req.params.title)
  
- 
- 
-//   next()
-// },multipleUpload ,(req, res) => {
-   
-//   if(req.files){
-//     console.log("file uploaded")
-//     console.log(req.files)
-//   }
-//   res.send('File uploaded successfully');
-// });
-
-
 //routers
 app.use(`/auth`, authRoutes);         //authentification routes 
 app.use(`/recours`, recoursRoutes);         //recours  routes 
+app.use(`/user`, userInfos);         //recours  routes 
 
 app.use(statistiquesRoute); 
+
 
  
 

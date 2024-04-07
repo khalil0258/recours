@@ -13,7 +13,7 @@ const Compte = () => {
   useEffect(() => {
     getUserInfos()
       .then((res) => {
-        setInfos(res.data.data[0]);
+        setInfos(res.data?.data[0]);
         setFirstEmail(res.data.data[0]?.email);
         setSecondEmail(res.data.data[0]?.email);
       })
@@ -29,8 +29,8 @@ const Compte = () => {
       });
       console.log(response);
       if (
-        response.status === 200 &&
-        response.data.statut === "le profil a été mis à jour avec succès"
+        response?.status === 200 &&
+        response?.data.statut === "le profil a été mis à jour avec succès"
       ) {
         setShow({ show: true, password: false });
       }

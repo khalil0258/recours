@@ -4,11 +4,12 @@ const bcrypt = require("bcryptjs");
 // get user infos 
 const userInfos=async(req,res)=>{
     const sql = "select * from assures where id_assure=2";
+    console.log("first")
     // hna values ndirouha b session.userinfos 
     db.query(sql, (err, result) => {
       if(err) return res.json({statut: "erreur", message: "Une erreur est survenu, réessayez plus tard"})
-  console.log(result)
-   
+  // console.log(result)
+   console.log("bew",result)
           return res.json({statut: "success",data:result})
    
     })
@@ -38,10 +39,12 @@ const changePassword=async(req,res)=>{
   }
 }
 
+
+
 // update profile controller 
 const updateProfile=async(req,res)=>{ 
   const {email,numero_telephone}=req.body;
-  console.log("first",typeof req.body.numero_telephone)
+  console.log("first dkfdlkfja;ldjljsjfkdaljf;ldkj;l")
   try {
     // hna lazem nbedlo 2 b id_assure 
     const values=[email,numero_telephone,2]
@@ -63,5 +66,5 @@ const updateProfile=async(req,res)=>{
 
 
   module.exports = {
- userInfos,changePassword,updateProfile
+    userInfos,changePassword,updateProfile
   };
