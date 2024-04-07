@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 
-const ChoixCommission = ({ setFormData, setChecking, checking, setErrore }) => {
-  const [choixCommission, setChoixCommission] = useState("Locale");
+const ChoixCommission = ({
+  setFormData,
+  setChecking,
+  checking,
+  setErrore,
+  formData,
+}) => {
+  const [choixCommission, setChoixCommission] = useState();
   const [selectedReason, setSelectedReason] = useState("Decision");
   // Event handler to handle changes in the select element
-  const handleChangeReason = (event) => {
-    setSelectedReason(event.target.value);
 
+  const handleChangeReason = (event) => {
     setFormData((prev) => ({
       ...prev,
-      motif: choixCommission === "Locale" ? "" : event.target.value,
+      motif: formData?.commission === "Locale" ? "" : event.target.value,
     }));
     if (choixCommission === "National") {
       setChecking((prev) => ({
@@ -21,13 +26,15 @@ const ChoixCommission = ({ setFormData, setChecking, checking, setErrore }) => {
             ? 3
             : 2,
       }));
+      setSelectedReason(event.target.value);
     }
   };
-
-  // use effect
-  // useEffect(() => {
-  //   handleSelectedStep();
-  // },[choixCommission,]);
+  console.log(checking, selectedReason);
+  useEffect(() => {
+    if (!!formData.motif) {
+      setSelectedReason(formData?.motif);
+    }
+  }, [formData.motif]);
 
   return (
     <div className="choix_commission_body">
@@ -35,7 +42,7 @@ const ChoixCommission = ({ setFormData, setChecking, checking, setErrore }) => {
       <div className="choix_commission_inputs">
         <label
           className={`input_holder ${
-            choixCommission === "Locale" && "selected_input"
+            formData?.commission === "Locale" && "selected_input"
           }`}
           onClick={() => {
             setChoixCommission("Locale");
@@ -50,13 +57,13 @@ const ChoixCommission = ({ setFormData, setChecking, checking, setErrore }) => {
             type="radio"
             name="clrpq"
             value="clrpq"
-            checked={choixCommission === "Locale" && true}
+            checked={formData?.commission === "Locale" && true}
           />
           LA COMMISSION LOCALE DE RECOURS PRÉALABLE QUALIFIÉE
         </label>
         <label
           className={`input_holder ${
-            choixCommission === "National" && "selected_input"
+            formData?.commission === "National" && "selected_input"
           }`}
           onClick={() => {
             setChoixCommission("National");
@@ -71,12 +78,12 @@ const ChoixCommission = ({ setFormData, setChecking, checking, setErrore }) => {
             type="radio"
             name="clrpq"
             value="clrpq"
-            checked={choixCommission === "National" && true}
+            checked={formData?.commission === "National" && true}
           />
           LA COMMISSION National DE RECOURS PRÉALABLE QUALIFIÉE
         </label>
       </div>
-      {choixCommission === "National" && (
+      {formData?.commission === "National" && (
         <div className="national_verification">
           <div>
             <select
@@ -94,6 +101,9 @@ const ChoixCommission = ({ setFormData, setChecking, checking, setErrore }) => {
           {selectedReason === "Montant" ? (
             <div className="montant">
               <input
+                value={
+                  !!formData.nationalInputs && formData.nationalInputs?.input1
+                }
                 type="number"
                 placeholder="Entrez le montant de PR"
                 onChange={(event) => {
@@ -107,6 +117,10 @@ const ChoixCommission = ({ setFormData, setChecking, checking, setErrore }) => {
                       ...prev,
                       input1: event.target.value,
                     }));
+                    setFormData((prev) => ({
+                      ...prev,
+                      nationalInputs: { input1: event.target.value },
+                    }));
                   }
                 }}
               />
@@ -114,24 +128,44 @@ const ChoixCommission = ({ setFormData, setChecking, checking, setErrore }) => {
           ) : selectedReason === "Decision" ? (
             <div className="Decision">
               <input
+                value={
+                  !!formData.nationalInputs && formData.nationalInputs?.input1
+                }
                 type="number"
                 placeholder="Entrez le numero de reunion"
-                onChange={(event) =>
+                onChange={(event) => {
                   setChecking((prev) => ({
                     ...prev,
                     input1: event.target.value,
-                  }))
-                }
+                  }));
+                  setFormData((prev) => ({
+                    ...prev,
+                    nationalInputs: {
+                      input1: event.target.value,
+                      input2: formData.nationalInputs.input2,
+                    },
+                  }));
+                }}
               />
               <input
+                value={
+                  !!formData.nationalInputs && formData.nationalInputs?.input2
+                }
                 type="number"
                 placeholder="Entrez le numero de decision"
-                onChange={(event) =>
+                onChange={(event) => {
                   setChecking((prev) => ({
                     ...prev,
                     input2: event.target.value,
-                  }))
-                }
+                  }));
+                  setFormData((prev) => ({
+                    ...prev,
+                    nationalInputs: {
+                      input1: formData.nationalInputs.input1,
+                      input2: event.target.value,
+                    },
+                  }));
+                }}
               />
             </div>
           ) : (

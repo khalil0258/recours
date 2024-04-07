@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
 const JoindreFiles = ({ handleFileChange, formData, setFormData }) => {
   // console.log(!!Object.entries(formData.thirdFiles).length);
+  const [files, setFiles] = useState([]);
+
+  const handleFileChanging = (event) => {
+    const newFiles = Array.from(event.target.files);
+    setFormData((prev) => ({
+      ...prev,
+      thirdFiles: [...files, ...newFiles],
+    }));
+    setFiles((prev) => [...prev, ...newFiles]);
+  };
+
+  const removeFile = (index) => {
+    const updatedFiles = [...files];
+    updatedFiles.splice(index, 1);
+    setFiles(updatedFiles);
+
+    setFormData((prev) => ({
+      ...prev,
+      thirdFiles: updatedFiles,
+    }));
+  };
+
   return (
     <div className="joindre_document_body">
       <h3>Joindre documents</h3>
@@ -11,7 +33,7 @@ const JoindreFiles = ({ handleFileChange, formData, setFormData }) => {
         <div className="remarque">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
           architecto impedit quia odit adipisci maxime ad aperiam nesciunt
-          eveniet amet sit maiores delectus{" "}
+          eveniet amet sit maiores delectus
         </div>
         <label className="file-input-label">
           <span>
@@ -19,10 +41,9 @@ const JoindreFiles = ({ handleFileChange, formData, setFormData }) => {
               "Sélectionner un fichier"}
           </span>
           <input
-            // value={formData.firstFile}
             onChange={handleFileChange}
             type="file"
-            accept=".jpg, .jpeg, .png ,.pdf,.doc,.docx"
+            accept=".jpg, .jpeg, .png ,.pdf "
             className="file-input fileOne"
           />
           {/* Display selected file names */}
@@ -62,7 +83,7 @@ const JoindreFiles = ({ handleFileChange, formData, setFormData }) => {
             onChange={handleFileChange}
             type="file"
             className="file-input fileTwo"
-            accept=".jpg, .jpeg, .png ,.pdf,.doc,.docx"
+            accept=".jpg, .jpeg, .png ,.pdf "
           />
           {formData.secondFile?.name !== undefined && (
             <div className="flex">
@@ -95,31 +116,27 @@ const JoindreFiles = ({ handleFileChange, formData, setFormData }) => {
             </span>
             <input
               type="file"
-              onChange={handleFileChange}
+              onChange={handleFileChanging}
               className="file-input fileThree"
-              accept=".jpg, .jpeg, .png ,.pdf,.doc,.docx"
-              multiple={3}
+              accept=".jpg, .jpeg, .png ,.pdf"
+              multiple
               max={3}
             />
+
             {/* Display selected file names */}
-            {!!Object.entries(formData?.thirdFiles)?.length && (
-              <div className="flex">
-                {Object.entries(formData.thirdFiles)?.map((file, index) => (
-                  <p
-                    className="files_sty "
-                    key={index}
-                    onClick={() => {
-                      setFormData((prev) => ({
-                        ...prev,
-                        thirdFiles: {},
-                      }));
-                    }}
-                  >
-                    {file[1].name}
-                  </p>
-                ))}
-              </div>
-            )}
+
+            <div className="flex">
+              {files.map((file, index) => (
+                <div
+                  key={index}
+                  className="files_sty"
+                  onClick={() => removeFile(index)}
+                >
+                  {file.name}
+                  {/* <button>Remove</button> */}
+                </div>
+              ))}
+            </div>
           </label>
         </div>
       </div>

@@ -1,3 +1,8 @@
+.compte{
+ padding-bottom: 2rem;
+}
+
+
 .banner{
     width: 100%;
     background-color: #40679E;
@@ -25,6 +30,7 @@
     /* align-items: center;
     justify-content: space-between; */
     flex-wrap: wrap;
+    margin-bottom: 1rem;
 }
 .infomations_general .information_container>.infos{
     flex: 1; /* Flex to occupy equal space */
@@ -45,6 +51,25 @@
   color: black;
  
 }
+.showMotpass,.register_new_data{
+  padding: .5rem 2rem;
+  background-color: #40679E;
+  color: white ;
+  border-radius: 5px;
+}
+.lastone{
+  display: flex;
+  justify-content: flex-end;
+}
+ 
+.message_error{
+color: rgb(214, 0, 0);
+padding:0.5rem 2rem ;
+font-weight: 400;
+font-size: 18px;
+ }
+
+
 @media screen and (min-width: 480px) {
     .infomations_general .information_container>div {
       flex-basis: calc(50% - 20px); /* Two items per row */
@@ -53,8 +78,9 @@
   
   /* Media query for even smaller screens */
   @media screen and (max-width: 480px) {
- 
+  
     .infomations_general .information_container>div {
       flex-basis: calc(100% - 20px); /* Single item per row */
     }
+  
   }
