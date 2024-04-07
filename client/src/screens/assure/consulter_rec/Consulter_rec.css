@@ -1,0 +1,158 @@
+
+.container_recours {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 500px;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+}
+.container_recours h1{
+    margin-bottom: 20px;
+}
+
+.container_recours table{
+    width: 100%;
+    margin: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.container_recours table thead{
+    --bs-table-color: white;
+    --bs-table-bg: #111827;
+    text-align: left;
+}
+.container_recours table th{
+    padding: 17px 8px;
+}
+.container_recours table td {
+    padding: 12px 8px;
+    vertical-align: middle;
+}
+.container_recours table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+.container_recours tbody tr:last-of-type {
+    border-bottom: 3px solid #111827;
+}
+
+#vert{
+    color: green;
+}
+#jaune{
+    color: rgb(218, 218, 53);
+}
+#rouge{
+    color: red;
+}
+
+#afficher{
+    display: block;
+}
+
+/* filter css */
+.filter{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+/* show entries */
+.showEntries{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.showInput{
+    margin: 0px 8px 0px 8px;
+    padding: 2px 12px 4px 2px;
+    border: 1px solid black;
+    outline: none;
+    cursor: pointer;
+}
+
+/* drop down */
+.dropdown {
+    margin-left: 30px;
+    margin-right: 35px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; */
+}
+.btn-filtrer { 
+    background-color: #fdfdfd;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+    padding: 8px;
+    border: 1px solid black;
+}
+.btn-filtrer:hover { 
+    transform: scale(0.97);
+	transition: .3s;
+    border: 1px solid black;
+}
+.dropdown-item{
+    cursor: pointer;
+}
+
+/* l'input a afficher selon le filter choisi */
+.filterInput{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    width: 320px;
+}
+.filterInput.date{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2),
+              -2px -2px 5px rgba(0, 0, 0, 0.2);
+    padding: 4px 4px 4px 14px;
+    border-radius: 3px;
+    width: 300px;
+}
+
+.filterInput select{
+    padding: 6px 10px 6px 4px;
+    border: 1px solid black;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+}
+.filterInput input{
+    width: 150px;
+    height: 30px;
+    border: 1px solid black;
+    outline: none;
+    margin-right: 25px;
+    padding: 0px 4px 0px 8px;
+    border-radius: 3px;
+}
+.filterInput.date button{
+    padding: 3px 5px 3px 5px;
+    border-radius: 3px;
+}
+
+
+
+
+
+@media only screen and (max-width: 730px){
+	.filter{
+        flex-direction: column;
+    }
+    .dropdown {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .filter{
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .filterInput{
+        width: 100%;
+    }
+}

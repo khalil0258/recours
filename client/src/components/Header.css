@@ -1,0 +1,70 @@
+.app_container .maine_container .header{
+  color: white;
+  padding-left: 2rem;
+  background-color: #111827;
+  /* width:100%; */
+  position: fixed;
+  right: 0;
+  left: 23vw; 
+  height: 60px;
+  display: flex ;
+  
+  font-size: 20px;
+  align-items: center !important;
+  z-index: 100;
+  transition:  0.3s left ease-in-out;
+}
+.active_header {
+   left: 0 !important;
+
+}
+
+.header_container{
+    width: 100%;
+    padding-inline: 5px;
+ position: relative;
+    display: flex ;
+    justify-content: space-between;
+ 
+    align-items: center !important;
+}
+.header .bar_icon{
+cursor: pointer;
+font-size: 24px;
+}
+.header .navigation_links{
+justify-self: center;
+align-self: center;
+ 
+}
+
+.header .account_holder{
+    display: flex;
+    gap: 1rem;
+     
+    align-items: center; 
+    cursor: pointer;
+    
+    overflow: hidden;
+    position: relative;
+
+}
+.header .account_holder .account_circle{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    border-radius: 50%;
+    background-color: white;
+    color:black
+}
+
+  .header p{
+    align-self: center !important; 
+   position: relative;
+   top: 5px;
+  
+}
+  

@@ -1,0 +1,319 @@
+.effectuer{
+ 
+    width: 100%;
+    height: auto;
+    padding:2rem 0 ;
+   
+}
+.main_holder{
+width: 94%;
+margin: 0 auto;
+padding: 50px 70px;
+background-color: white;
+box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.steps_holder{
+    display: flex; align-items: center;
+    gap: 1rem;
+    /* background-color: red; */
+    width: 100%;
+}
+.main_holder h3{
+    font-size: 30px;
+    margin-bottom: 2rem;
+}
+.main_holder h5{
+    font-weight: 400;
+    font-size: 18px;
+}
+.step{
+    /* background-color: red; */
+    display: flex ;
+    align-items: center;
+justify-content: center;
+    width: 25%;
+    position: relative;
+    overflow-x: visible;
+}
+
+.avertissment_step{
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.number_holder{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #8E8E8E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 500;
+}
+.line{
+    width: 80% !important;
+    height: 2px;
+    position: absolute;
+    right: -44%;
+    top: 27%;
+    background-color: #8E8E8E;
+}
+.active{
+    background-color: #3F51B5;  
+}
+
+
+.active p{
+    font-weight: 500;
+}
+.avertissment_step p{
+    font-size: 18px;
+}
+.effectuer_body{
+    margin-top: 1rem;
+}
+ 
+.effectuer_body h3{
+font-weight: 400;
+}
+.avertissement_body .avertissement_conditions{
+    width: 100%;
+    text-align: justify;
+    background-color:#F9FBFC ;
+    padding: 10px 20px;
+    border: 1px solid rgba(0,0,0,0.4);
+    font-size: 14pxd;
+}
+.avertissement_conditions h4{
+   font-size: 22px;
+padding-block: .5rem;
+}
+.avertissement_conditions .point_aver{
+   /* text-align:justify; */
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 2rem;
+   margin-bottom: 1rem;
+}
+.avertissement_conditions .point_aver div{
+   /* border: 1px solid black; */
+   /* background-color: red; */
+ /* padding: 1rem; */
+   /* border-radius: 50%; */
+}
+
+.confirmation{
+    display: flex;
+    
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 1rem 0;
+    font-size: 14px;
+}
+
+ /* btns  */
+ .btn_holder {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    justify-content: flex-end;   
+ }
+ .btn_holder >button{
+    font-size: 14px;
+    font-weight: 500; padding: .4rem 1.6rem;
+    border-radius: 5%;
+    cursor: pointer;
+    
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: all .2 ease-in-out;
+ }
+ .btn_holder .suivant{
+    background-color: #3F51B5;
+    color: white;
+ }
+ .btn_holder .suivant:hover{
+    background-color: #3e55d6;
+ }
+ .btn_holder .retour{
+    background-color: #ffffff;
+    color: black;
+ }
+ .btn_holder .retour:hover{
+    background-color: #f3f3f3fc;
+ }
+
+ /* maintenant choix commission page  */
+ .input_holder{
+    width: 100%;
+    padding: 1.6rem 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    gap: .7rem;
+    font-weight: 400;
+    /* border: 1px solid rgba(0,0,0,0.4); */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+ }
+
+ .selected_input{
+    background-color: rgba(47,137,252,.08);
+    color: #3e55d6;
+    font-weight: 500;
+     border: 2px solid #3F51B5;
+ }
+
+ /* verification  */
+ .national_verification{
+    width: 100%;
+    border-top: 1px solid gray;
+    padding: 1rem 0;
+
+ }
+ .national_verification .national_verification_choices{
+    width: 100%;
+    padding: 1rem .5rem;
+        border: 1px solid rgba(0,0,0,0.4);
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 5px;
+        -moz-appearance: none; /* Pour Firefox */
+        -webkit-appearance: none; 
+        outline: none;
+        cursor: pointer;
+        
+ }
+ 
+
+  .national_verification .national_verification_choices::-ms-expand {
+    display: none;  
+  }
+ 
+/* maintenant les verification 
+ */
+ /* montant  */
+ .montant{
+    width: 100%;
+    margin: 1rem 0;
+ 
+ }
+ .montant >input {
+    width:100%;
+    padding: 1rem .5rem;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;  outline: none;
+ }
+
+ /* si decision */
+ .Decision{
+    width: 100%;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+ }
+ .Decision >input{
+    width:48%;
+    padding: 1rem .5rem;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;  outline: none;
+ }
+ /* delais 
+  */
+  .Delais{
+    width: 100%;
+    margin: 1rem 0;
+  }
+  .Delais >input{
+    width:50%;
+    padding: 1rem .5rem;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+      outline: none;
+      cursor: pointer;
+ }
+
+ .error_message{
+    color: red;
+    margin-top: -.5rem;
+    font-size: 14px;
+ }
+
+/* choix objet  */
+.filters{
+   width: 100%;
+   margin-bottom: 2rem;
+border-bottom: 1px solid rgb(225, 225, 225);
+padding-bottom: 1rem;
+}
+.filters .filters_objet{
+   width: 100%;
+   padding: .7rem .5rem ;
+   border: 1px solid black;
+   outline: none;
+   border-radius: 2px;
+}
+
+
+
+
+ /* joindre documment page  */
+ .joindre_document_body{
+    width: 100%;
+ }
+ .document_holder{
+    width: 100%;
+    margin: 1rem 0;
+ }
+ .document_holder h4{
+    font-size: 24px;
+    font-weight: 300;
+ }
+ .document_holder .remarque{
+    padding: 1rem .5rem;
+    background-color: rgba(215,215,215,.25);
+    border-radius: 5px;
+    margin: .5rem 0;
+ }
+ .document_holder input{
+    width: 100%;
+ }
+
+
+ /* tring  */
+ 
+  .file-input-label {
+    display: block;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .file-input {
+    display: none; /* Cacher l'input natif */
+  }
+  
+  .file-preview {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+
+ 

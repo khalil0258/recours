@@ -1,0 +1,158 @@
+
+/* css de la fenetre */
+.container_detail{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .7); 
+    z-index: 1000;
+    animation: anim_opacity .5s;
+}
+.boite {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    animation: anim_boite .5s;
+}
+.container_detail[aria-hidden="true"]{
+    animation: anim_opacity2 .3s;
+}
+.container_detail[aria-hidden="true"] .boite{
+    animation: slideToButtom .2s;
+}
+
+
+/* l'entet de la fenetre */
+.container_detail .boite-header{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    padding: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+    border-radius: 5px;
+}
+.container_detail .boite-header .titre{
+    color: rgb(62, 55, 55);
+    font-size: 16px;
+}
+.container_detail .boite .fermer{
+    position:absolute;
+    top: 2px;
+    right:20px;
+    cursor:pointer;
+    transition: .3s;
+}
+.container_detail .boite .fermer i{
+    font-size: 32px;
+}
+.container_detail .boite .fermer:hover{
+    color: red;
+}
+
+/* le body de la fenetre */
+.boite-body{
+    width: 100%;
+    padding: 20px;
+    z-index: 1;
+    overflow-y: auto; 
+}
+.infos_recours{
+    width: 100%;
+}
+.infos{
+    width: 100%;
+    margin: 0px 0px 0px 20px;
+}
+.infos p span {
+    font-weight: bold;
+}
+
+.documents_recours{
+    width: 100%;
+}
+.documents_recours .liste_documents{
+    width: 100%;
+}
+.liste_documents .document{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    box-shadow: #0000000d 0px 0px 0px 1px,
+    #d1d5db3d 0px 0px 0px 1px inset;
+    margin-bottom: 10px;
+}
+.document .gauche{
+    display: flex;
+    align-items: center;
+    
+}
+.liste_documents .ordre{
+    background-color: #18a7ff;
+    color: #fff;
+    padding: 3px 12px;
+    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+.document .gauche .nom_document{
+    font-size: 14px;
+}
+
+.document .droite{
+    margin-left: 50px;
+}
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes anim_opacity {
+    from{opacity: 0 ;}
+    to{opacity: 1 ;}
+  }
+  @keyframes anim_boite {
+    from{transform: translateY(-50px);}
+    to{transform: translateY(0px);}
+  }
+  
+  
+  /* animation pour la fermuteur de la boite */
+  @keyframes anim_opacity2 {
+    from{opacity: 1 ;}
+    to{opacity: 0 ;}
+  }
+  @keyframes slideToButtom {
+    from{transform: translateY(0px);}
+    to{transform: translateY(50px);}
+  }

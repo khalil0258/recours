@@ -1,0 +1,86 @@
+.compte{
+ padding-bottom: 2rem;
+}
+
+
+.banner{
+    width: 100%;
+    background-color: #40679E;
+    color: white;
+    font-size: 30px;
+    font-family: 300;
+    padding: 4rem 1.3rem;
+
+}
+ 
+.infomations_general{
+    width: 95%;
+   margin: 0 auto;
+   padding: 3rem 0 0;
+}
+.infomations_general h4{
+    font-size: 28px ;
+    font-weight: 300;
+    margin-bottom: 1rem;
+ 
+}
+.infomations_general .information_container{
+    display: flex;
+    gap: 1rem; 
+    /* align-items: center;
+    justify-content: space-between; */
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+.infomations_general .information_container>.infos{
+    flex: 1; /* Flex to occupy equal space */
+    min-width: 300px; /* Minimum width for each item */
+ }
+
+ .infos >input{
+    width:100%;
+    padding: .8rem .5rem;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -15px 40px -28px inset;
+    border-radius: 5px;
+      outline: none;
+ 
+}
+.infos >div{
+  font-size: 18px;
+  color: black;
+ 
+}
+.showMotpass,.register_new_data{
+  padding: .5rem 2rem;
+  background-color: #40679E;
+  color: white ;
+  border-radius: 5px;
+}
+.lastone{
+  display: flex;
+  justify-content: flex-end;
+}
+ 
+.message_error{
+color: rgb(214, 0, 0);
+padding:0.5rem 2rem ;
+font-weight: 400;
+font-size: 18px;
+ }
+
+
+@media screen and (min-width: 480px) {
+    .infomations_general .information_container>div {
+      flex-basis: calc(50% - 20px); /* Two items per row */
+    }
+  }
+  
+  /* Media query for even smaller screens */
+  @media screen and (max-width: 480px) {
+  
+    .infomations_general .information_container>div {
+      flex-basis: calc(100% - 20px); /* Single item per row */
+    }
+  
+  }
