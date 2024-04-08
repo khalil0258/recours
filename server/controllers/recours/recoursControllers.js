@@ -165,8 +165,22 @@ const getDocuments =async (req, res) => {
 
 
 
+//get Decisions
+const getDecisions = async(req, res)=>{
 
-module.exports={soumetreRecours,soumetre_piece,getRecours,verfication,getDocuments}
+  const sql='select * from decisions';
+  db.query(sql, (err, result)=>{
+      if(err)
+          return res.json({statut: "erreur", message: "Une erreur est survenue"});
+      else
+          return res.json({statut: "success", resultat: result})
+  })
+}
+
+
+
+
+module.exports={soumetreRecours, soumetre_piece, getRecours, verfication, getDocuments, getDecisions}
   
   
 //   db = require('./../../db/connect');

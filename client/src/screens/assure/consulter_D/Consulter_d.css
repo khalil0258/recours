@@ -1,0 +1,59 @@
+
+.container_decision {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 500px;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+}
+.container_decision h1{
+    margin-bottom: 20px;
+}
+
+.container_decision table{
+    width: 100%;
+    margin: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.container_decision table thead{
+    --bs-table-color: white;
+    --bs-table-bg: #111827;
+    text-align: left;
+}
+.container_decision table th{
+    padding: 17px 8px;
+}
+.container_decision table td {
+    padding: 12px 8px;
+    vertical-align: middle;
+}
+.container_decision table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+.container_decision tbody tr:last-of-type {
+    border-bottom: 3px solid #111827;
+}
+
+/* filter css */
+.filter{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+/* show entries */
+.showEntries{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.showInput{
+    margin: 0px 8px 0px 8px;
+    padding: 2px 12px 4px 2px;
+    border: 1px solid black;
+    outline: none;
+    cursor: pointer;
+}
