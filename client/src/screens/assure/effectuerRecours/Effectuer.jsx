@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Effectuer.css";
 import Step from "../../../components/recours_controllers/Step";
-import { checkTheLocal, soumetre_recours } from "../../../api";
+import { checkTheLocal, getUserInfos, soumetre_recours } from "../../../api";
 import Avertissement from "../../../components/recours_controllers/Avertissement";
 import ChoixCommission from "../../../components/recours_controllers/ChoixCommission";
 import Choix_objet from "../../../components/recours_controllers/Choix_objet";
@@ -14,6 +14,7 @@ const Effectuer = () => {
   const [stepe, setStepe] = useState(1);
   const [errore, setErrore] = useState({ error: false, message: "" });
   const [checking, setChecking] = useState({ type: 1, input1: "", input2: "" });
+  const [accuse, setAccuse] = useState({});
   // console.log(new Date().getTime());
   const [formData, setFormData] = useState({
     commission: "Locale",
@@ -54,13 +55,15 @@ const Effectuer = () => {
 
       setSelectedStep({ etape: 1, valide: !!valide });
     }
-    if (stepe === 3 && !!formData.objet) {
+    if (stepe === 3 && !!formData.objet.trim().length) {
+      console.log("fdf", formData.objet);
       setSelectedStep({ etape: 3, valide: !!formData.objet });
     }
   }
 
   // handle next pour suivant button
   const handleNext = async () => {
+    console.log(stepe, selectedStep.etape, selectedStep.valide, formData.objet);
     // console.log(formData, stepe, selectedStep?.valide);
     if (stepe === 4) {
       if (!!formData.firstFile && !!formData.secondFile) {
@@ -91,8 +94,20 @@ const Effectuer = () => {
           response?.status === 200 &&
           response?.data.success === "Recours ajoute avec succes"
         ) {
-          console.log("first");
-          setSelectedStep({ etape: 4, valide: true });
+          await getUserInfos().then((res) => {
+            setAccuse({
+              nom: res.data?.data[0].nom,
+              prenom: res.data?.data[0].prenom,
+              date_de_naissance: new Date(res.data?.data[0]?.date_naissance)
+                .toLocaleString()
+                .slice(0, 10),
+              adresse: res.data?.data[0].adresse,
+              recours: formData?.objet,
+              pieces: "recours ,decision de clrpq ....", // hadi dok nbedlo fiha 3la 7sab recours
+              commission: formData?.commission,
+            });
+            setSelectedStep({ etape: 4, valide: true });
+          });
         }
       } else {
         setErrore({
@@ -174,7 +189,10 @@ const Effectuer = () => {
         setSelectedStep({ etape: stepe, valide: true });
         setStepe((prev) => prev + 1);
       }
-    } else if (stepe < 4 && selectedStep?.valide) {
+    } else if (stepe < 4 && selectedStep?.valide && selectedStep?.etape != 2) {
+      console.log(stepe);
+      console.log("sed", selectedStep);
+      console.log("sed", !!formData.objet);
       setStepe((prev) => prev + 1);
     }
     // console.log(stepe, selectedStep, selectedStep[stepe - 1]?.valide);s
@@ -270,7 +288,9 @@ const Effectuer = () => {
           </div>
         </div>
       </div>
-      {selectedStep.etape === 4 && !!selectedStep?.valide && <Message_valide />}
+      {selectedStep.etape === 4 && !!selectedStep?.valide && (
+        <Message_valide data={accuse} />
+      )}
     </div>
   );
 };

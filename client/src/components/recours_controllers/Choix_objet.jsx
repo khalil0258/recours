@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Choix_objet = ({ handleSelectedStep, setFormData, formData }) => {
   const [filtre, setFiltre] = useState("tout");
-
+  useEffect(() => {
+    handleSelectedStep();
+  }, []);
   // Function to handle changes in the selected value
   const handleFiltre = (event) => {
     setFiltre(event.target.value);
@@ -65,7 +67,7 @@ const Choix_objet = ({ handleSelectedStep, setFormData, formData }) => {
     },
   ];
   return (
-    <div className="choix_objet_body">
+    <div className="choix_objet_body fadeTranslate">
       <h3>Choix Objet </h3>
       {/* les objets existes  */}
       <div className="filters">
