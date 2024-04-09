@@ -78,8 +78,8 @@ const Effectuer = () => {
         const path = JSON.stringify({
           emetteur: formData.commission === "Locale" ? "" : "assure",
           commission: formData.commission,
-          id_assure: 2,
-          id_agence: 9,
+          id_assure: 1,
+          id_agence: 3,
           motif: formData.commission === "Locale" ? "" : formData.motif,
           volet: formData.volet,
           objet: formData.objet,

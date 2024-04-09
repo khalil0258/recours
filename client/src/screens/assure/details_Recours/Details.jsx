@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './details.css'
 import axios from 'axios';
 import AfficherDocument from '../../../components/afficher_document/AfficherDocument.jsx'
+import Button from 'react-bootstrap/Button';
 
 function Details({setShowDetail, showDetail}) {
 
@@ -90,7 +91,7 @@ function Details({setShowDetail, showDetail}) {
                                             </span>
                                         </div>
                                         <div className="droite">
-                                            <button className='btn btn-primary btn_afficher' 
+                                            <Button className='btn_afficher' variant="outline-primary"
                                                 onClick={() => setShowDocument({
                                                     afficher: true,
                                                     document: {
@@ -100,36 +101,26 @@ function Details({setShowDetail, showDetail}) {
                                                     }
                                                 })}
                                             >
-
                                                 Afficher
-                                            </button>
+                                            </Button>
+
                                         </div>
                                     </div>
                                 ))
                             }
 
                             
-
-                            {/* <div className='document'>
-                                <div className='gauche'>
-                                    <span className='ordre'>
-                                        01
-                                    </span>
-                                    <span className='nom_document'>
-                                        demande de recours ecris.pdf
-                                    </span>
-                                </div>
-                                <div className="droite">
-                                    <button className='btn btn-primary btn_afficher'>Afficher</button>
-                                </div>
-                            </div> */}
-
                         </div>
 
                         
                     </div>
 
+                    <div className="boite-footer">
+                        <Button variant="outline-danger"> Annuler le recours </Button>
+                    </div>
+
                 </div>
+
 
             </div>
         
