@@ -37,7 +37,7 @@ const ChoixCommission = ({
   }, [formData.motif]);
 
   return (
-    <div className="choix_commission_body">
+    <div className="choix_commission_body fadeTranslate">
       <h3>Choix de commission</h3>
       <div className="choix_commission_inputs">
         <label
@@ -84,7 +84,7 @@ const ChoixCommission = ({
         </label>
       </div>
       {formData?.commission === "National" && (
-        <div className="national_verification">
+        <div className="national_verification fade">
           <div>
             <select
               value={selectedReason}

@@ -2,7 +2,7 @@ import React from "react";
 
 const Avertissement = ({ handleSelectedStep }) => {
   return (
-    <div className="avertissement_body">
+    <div className="avertissement_body fadeTranslate">
       <h3>Avertissement</h3>
       <div className="avertissement_conditions">
         <h4>

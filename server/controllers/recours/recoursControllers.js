@@ -61,7 +61,7 @@ const soumetre_piece=async(req,res)=>{
   // // values.push(v);}
 
   //   values.push(v);
-if(i===2 &&propertyValues[i]?.length>1){
+if(i===2 &&propertyValues[i]?.length >= 1){
    
   propertyValues[i]?.map(val=>{
  

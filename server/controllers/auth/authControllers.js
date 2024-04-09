@@ -17,7 +17,7 @@ const login = async (req, res) => {
     if(result.length > 0){
         //console.log(req.session)
         req.session.userinfos = result[0] ;
-        //console.log(req.session.userinfos)
+        console.log(req.session.userinfos)
         return res.json({statut: "success"})
     } else {
         return res.json({statut: "erreur", message: "Email ou Mot de Passe incorrect"})

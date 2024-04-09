@@ -8,6 +8,7 @@ const Compte = () => {
   const [infos, setInfos] = useState({});
   const [firstEmail, setFirstEmail] = useState("");
   const [secondEmail, setSecondEmail] = useState("");
+  const [dateNaissance, setDateNaissance] = useState();
   const [error, setError] = useState({ error: false, message: "" });
   const [show, setShow] = useState({ show: false, password: false });
   useEffect(() => {
@@ -81,8 +82,8 @@ const Compte = () => {
           <div className="infos">
             <div>Date de naissance*</div>
             <input
-              type="date"
-              value={infos.date_naissance?.split("T")[0]}
+              type="text"
+              value={new Date(infos?.date_naissance).toLocaleDateString()}
               disabled
             />
           </div>

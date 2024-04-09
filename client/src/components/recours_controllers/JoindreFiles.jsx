@@ -25,7 +25,7 @@ const JoindreFiles = ({ handleFileChange, formData, setFormData }) => {
   };
 
   return (
-    <div className="joindre_document_body">
+    <div className="joindre_document_body fadeTranslate">
       <h3>Joindre documents</h3>
       {/* document recours  */}
       <div className="document_holder">
