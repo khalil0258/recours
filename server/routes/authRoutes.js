@@ -1,5 +1,5 @@
 const express = require("express");
-const { login, isConnected } = require("../controllers/auth/authControllers");
+const { login, isConnected, logout } = require("../controllers/auth/authControllers");
 const router = express.Router();
 
 
@@ -7,6 +7,7 @@ const router = express.Router();
 
 // routes 
 router.post("/login", login) ;
+router.get("/logout", logout) ;
 router.get("/isConnected", isConnected) ;
 
 

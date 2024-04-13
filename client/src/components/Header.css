@@ -11,7 +11,7 @@
   
   font-size: 20px;
   align-items: center !important;
-  z-index: 100;
+  z-index: 100 !important;
   transition:  0.3s left ease-in-out;
 }
 .active_header {
@@ -68,3 +68,21 @@ align-self: center;
   
 }
   
+
+
+@media screen and (max-width: 650px) {
+
+  .app_container .maine_container .header{
+ 
+ 
+    left: 0; 
+ 
+  }
+  .active_header {
+     left: 0 !important;
+  
+  }
+  .account_holder p{
+    display: none;
+  }
+}

@@ -77,7 +77,7 @@ else if(i<2){
   values.push(v);
 }
     }
-    console.log("values",values)
+    // console.log("values",values)
 
     const sql='insert into pieces (nom,chemin,id_recours,type) Values ?';
     console.log("values",values);

@@ -25,6 +25,7 @@ const Step = ({ number, name, selectedStep }) => {
         <div className={`number_holder ${activeSteps && "active"}`}>
           <span>{number}</span>
         </div>
+
         <p>{name}</p>
       </div>
       {number !== 4 && <div className={`line ${activeLines && "active"}`} />}

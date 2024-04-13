@@ -1,5 +1,6 @@
 import axios from "axios";
 
+axios.defaults.withCredentials=true;
 
 // for the national verification 
 export const checkTheLocal=async(id_reunion,id_decision,type)=>{
@@ -69,7 +70,31 @@ export const updateInfos=async(body)=>{
       console.log(response)
       return response;
    } catch (error) {
-      
+      console.log(error)
    }
 }
 
+// check if connected 
+export const checkConnexion=async()=>{
+   try {
+      const path="http://localhost:4000/auth/isConnected";
+      const response=await axios.get(path);
+      console.log("isconnected",response)
+      return response;
+   } catch (error) {
+      console.log(error)
+   }
+}
+
+// logout 
+export const login_out=async()=>{
+   try {
+      console.log(" logout")
+      const path="http://localhost:4000/auth/logout";
+          const response=await axios.get(path);
+      console.log("logout",response)
+      return response;
+   } catch (error) {
+      console.log(error)
+   }
+}

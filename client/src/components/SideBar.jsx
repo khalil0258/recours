@@ -4,8 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const SideBar = ({ openBar }) => {
   const parame = useLocation();
-  console.log(parame.pathname.split("/")[2]);
-  // const [pathname,setPathname]=use
+
   return (
     <div className={`sideBar ${!openBar && "hidden"} `}>
       {/* logo div  */}
@@ -17,14 +16,8 @@ const SideBar = ({ openBar }) => {
       </div>
       <div className="links_sidebar">
         <div>
-          <Link to="tableau_de_bord" className="link">
-            <p
-              className={
-                parame.pathname.split("/")[2] === "tableau_de_bord"
-                  ? `active`
-                  : ""
-              }
-            >
+          <Link to="" className="link">
+            <p className={parame.pathname.split("/")[2] === "" ? `active` : ""}>
               Tableau de bord
             </p>
           </Link>
