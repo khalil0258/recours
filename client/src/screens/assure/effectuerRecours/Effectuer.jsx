@@ -83,7 +83,7 @@ const Effectuer = () => {
           commission: formData.commission,
           id_assure: 2,
           id_agence: 9,
-          motif: formData.commission === "Locale" ? "" : formData.motif,
+          motif: formData.commission === "Locale" ? null : formData.motif,
           volet: formData.volet,
           objet: formData.objet,
         });
