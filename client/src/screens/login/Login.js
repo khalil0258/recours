@@ -4,12 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import loginImage from './../../assets/Login2.png';
 import axios from 'axios'
 import ErreurMessage from './../../components/message_erreur/ErreurMessage'
-
+import { useNavigate } from 'react-router';
+import {loginReducer}from '../../redux/slices/authSlice';
+import { useDispatch } from 'react-redux';
 
 function Login({setShowLogin, showLogin}) {
-
+const navigate=useNavigate()
     const [aria, setAria] = useState(false)
-
+    const dispatch=useDispatch()
     const [email, setEmail] = useState('')
     const [mdp, setMdp] = useState('')
 
@@ -23,8 +25,7 @@ function Login({setShowLogin, showLogin}) {
             setAria(false)
           }, 200);
     }
-
-
+    axios.defaults.withCredentials=true;
     const login = (e) => {
         e.preventDefault();
         //console.log(email + "    " + mdp)
@@ -41,9 +42,11 @@ function Login({setShowLogin, showLogin}) {
             setErreur(res.data.message)
             //console.log(res);
           } else {
-            console.log(res.data.statut)
+            console.log(res.data)
             setErreur('');
-            //navigate('/'); naviguer vers le dashboard de l'assure
+            dispatch(loginReducer({user:res.data}));
+            navigate('/assure'); 
+            // naviguer vers le dashboard de l'assure
           }
         })
         .catch(err => {

@@ -7,10 +7,13 @@
     width: 100%;
     background-color: #40679E;
     color: white;
-    font-size: 30px;
+ 
     font-family: 300;
-    padding: 4rem 1.3rem;
+    padding: 3rem 1.3rem;
 
+}
+.banner h2{
+  font-size: 40px !important;
 }
  
 .infomations_general{

@@ -9,6 +9,8 @@ import iconDecision from "./../../../assets/iconDecision.png";
 import iconAccorde from "./../../../assets/iconAccorde.png";
 import iconRejeter from "./../../../assets/iconRejeter.png";
 import iconDeconnecter from "./../../../assets/iconDeconnecter.png";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../redux/actions/authActions";
 
 const Home = () => {
   const [valeurs, setValeurs] = useState({
@@ -20,7 +22,7 @@ const Home = () => {
     nb_decisions_accorde: 0,
     nb_decisions_rejete: 0,
   });
-
+  const dispatch = useDispatch();
   useEffect(() => {
     axios
       .get("http://localhost:4000/getStatistiques")
@@ -147,7 +149,14 @@ const Home = () => {
               />
             </i>
             <span className="text">
-              <button className="btn-deconnecter">Se Déconnecter</button>
+              <button
+                className="btn-deconnecter"
+                onClick={() => {
+                  dispatch(logout());
+                }}
+              >
+                Se Déconnecter
+              </button>
             </span>
           </li>
         </ul>

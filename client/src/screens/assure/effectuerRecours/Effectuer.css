@@ -1,10 +1,6 @@
-.effectuer{
- 
-    width: 100%;
-    height: auto;
-    padding:2rem 0 ;
-   
-}
+
+
+
 .main_holder{
 width: 94%;
 margin: 0 auto;
@@ -125,6 +121,7 @@ padding-block: .5rem;
     align-items: center;
     gap: 1rem;
     width: 100%;
+    margin-top: 3rem;
     justify-content: flex-end;   
  }
  .btn_holder >button{
@@ -637,6 +634,7 @@ padding-bottom: 1rem;
   .message{
    /* background-color: red; */
    width: 35%;
+   /* height: ; */
    position: fixed;
    text-align: center;
    top: 50%;
@@ -645,13 +643,20 @@ padding-bottom: 1rem;
    background-color:white ;
    border-radius: 5px;
 background-color: white;
-   z-index: 2000;
-   padding: 2rem 0;
+   z-index: 2000 !important;
+   padding: .7rem 0;
+ 
   }  
   .message>*{
-   text-decoration: none;
-   color: black;
-  }
+     text-decoration: none;
+     color: black;
+   }
+   .pdfHolder{
+    width: 95%;
+    height: 70vh;
+    margin-bottom: 1rem;
+    margin-inline: auto;
+   }
   .message i{
    color: #7DCE13;
    font-size: 44px;
@@ -720,4 +725,72 @@ background-color: white;
      opacity: 1;
      transform: translateX(0); /* Final position */
    }
+ }
+
+ 
+ @media screen and (max-width: 650px) {
+   .main_holder{
+ 
+      padding: 20px 20px;
+      
+  
+      }
+   .effectuer{
+ 
+    
+      padding:.5rem 0 ;
+     
+  }
+  
+ 
+ 
+
+ 
+ 
+ 
+
+  
+  /* message succes  */
+  .message{
+   
+   width: 95% !important;
+ 
+ 
+} 
+
+  /* ///// */
+  .steps_holder{
+ display: block;
+ 
+}
+.step{
+  
+   width: 100%;
+
+}
+
+ 
+
+.avertissment_step{
+   width: 100%;
+   margin: .5rem 0;
+    
+   flex-direction: row !important;
+   align-items: center !important;
+   justify-content: flex-start;
+
+    
+}
+.avertissment_step p{
+   position: relative;
+   top: 7px;
+}
+
+
+
+  .line{
+  display: none;
+ 
+}
+ 
  }

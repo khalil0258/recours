@@ -8,14 +8,15 @@ const authRoutes = require('./routes/authRoutes')
 const recoursRoutes = require('./routes/recoursRoutes')
 const db = require('./db/connect');
 const session = require('express-session')
-//const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser')
 
 const statistiquesRoute = require('./routes/statistiquesRoute');
-const userInfos = require('./routes/userInfos')
+const userInfos = require('./routes/userInfos');
+// const { checkSessionExpiration } = require("./middleware/checkSessionExpiration");
 
 const PORT = process.env.PORT || 4000;
 
-app.use(bodyParser.json());
+
 app.use(cors({
   origin: ["http://localhost:3000"],
   methods: ["POST", "GET", "DELETE", "UPDATE","patch","PUT"],
@@ -30,15 +31,16 @@ app.use('/assure', express.static('./assure'));
 
 app.options("*", cors());
 
-//this one is to make our backend server understand/recognize the JSON format
-//app.use(bodyParser.json());
+//this one is to make our backend server understand/recognize the  
+ 
 app.use(express.json()); //nouvelle method de expresse
 
-//app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 // configuration de session
 app.use(session({
-  key: 'user-session',
+  key: "user-session",
   secret: 'secret', // a secret key used to encrypt the session cookie
   resave: false,
   saveUninitialized: false,
@@ -47,6 +49,9 @@ app.use(session({
       maxAge: 1000 * 60 * 60 * 24
   } // set the session cookie properties
 }))
+
+ 
+ 
 
 // BDD connection
 db.connect(function(err) {

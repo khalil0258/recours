@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   section: {
     flexDirection: "row",
     width: "100%",
+    alignItems: "flex-start",
     justifyContent: "space-between",
     fontSize: "12px",
   },
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     gap: "20px",
   },
   volet: { marginTop: "20px" },
-  text: { margin: "5px 0 0", fontWeight: "300" },
+  text: { margin: "5px 0 0", fontWeight: "200" },
   depose: {
     margin: "20px 30px  0",
     fontSize: "11px",

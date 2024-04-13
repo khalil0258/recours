@@ -19,7 +19,7 @@ const Effectuer = () => {
   const [formData, setFormData] = useState({
     commission: "Locale",
     objet: "",
-    motif: "Decision",
+    motif: "",
     volet: "",
     nationalInputs: {},
     firstFile: null,

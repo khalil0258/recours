@@ -8,7 +8,7 @@ const ChoixCommission = ({
   formData,
 }) => {
   const [choixCommission, setChoixCommission] = useState();
-  const [selectedReason, setSelectedReason] = useState("Decision");
+  const [selectedReason, setSelectedReason] = useState("");
   // Event handler to handle changes in the select element
 
   const handleChangeReason = (event) => {
@@ -24,12 +24,14 @@ const ChoixCommission = ({
             ? 1
             : event.target.value === "Montant"
             ? 3
-            : 2,
+            : event.target.value === "Delais"
+            ? 3
+            : null,
       }));
       setSelectedReason(event.target.value);
     }
   };
-  console.log(checking, selectedReason);
+
   useEffect(() => {
     if (!!formData.motif) {
       setSelectedReason(formData?.motif);
@@ -69,7 +71,7 @@ const ChoixCommission = ({
             setChoixCommission("National");
             setFormData((prev) => ({
               ...prev,
-              motif: "Decision",
+
               commission: "National",
             }));
           }}
@@ -91,10 +93,18 @@ const ChoixCommission = ({
               onChange={handleChangeReason}
               className="national_verification_choices"
             >
-              <option value="Decision">Recours sur decision de CLRPQ</option>
-              <option value="Montant">Montant de PR/MR</option>
+              <option value="" selected hidden>
+                Pourquoi faites-vous un recours à la commission locale ?
+              </option>
+              <option value="Decision">
+                Contester la décision de la commission locale
+              </option>
+              <option value="Montant">
+                Montant PR/MR supérieur à 1 000 000 DA
+              </option>
               <option value="Delais">
-                le délais de la réponse a depassé 60 jours
+                Le délai de la réponse de la commission locale a dépassé 60
+                jours
               </option>
             </select>
           </div>
@@ -169,19 +179,21 @@ const ChoixCommission = ({
               />
             </div>
           ) : (
-            <div className="Delais">
-              <input
-                type="date"
-                placeholder="Entrez la date de recours"
-                onChange={(event) =>
-                  setChecking((prev) => ({
-                    ...prev,
-                    input1: event.target.value,
-                    input2: "",
-                  }))
-                }
-              />
-            </div>
+            selectedReason === "Delais" && (
+              <div className="Delais">
+                <input
+                  type="date"
+                  placeholder="Entrez la date de recours"
+                  onChange={(event) =>
+                    setChecking((prev) => ({
+                      ...prev,
+                      input1: event.target.value,
+                      input2: "",
+                    }))
+                  }
+                />
+              </div>
+            )
           )}
         </div>
       )}
