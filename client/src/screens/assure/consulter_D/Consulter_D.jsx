@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import "./Consulter_d.css";
 import Button from 'react-bootstrap/Button';
+import AffichageDecision from "../affichage_pdf_decision/AffichageDecision";
 
 const Consulter_D = () => {
 
@@ -26,6 +27,11 @@ const Consulter_D = () => {
   //const [inputValue, setInputValue] = useState('') ; 
   const inputValue = useRef();
 
+  const [showDecision, setShowDecision] = useState({
+    afficher: false,
+    decision: {}
+  });
+
 
   useEffect(() => {
     axios
@@ -34,9 +40,10 @@ const Consulter_D = () => {
         if (res.data.statut === "erreur") {
           //console.log(res);
         } else {
-          //console.log(res.data)
+          //console.log(res.data.resultat)
           setAllDecisions(res.data.resultat);
           setDecisions(res.data.resultat);
+          //console.log(res.data.resultat[1].decision_sujet)
         }
       })
       .catch((err) => {
@@ -275,14 +282,14 @@ const Consulter_D = () => {
                     </td> */}
 
                     <td> {d.id_decision} </td>
-                    <td> {d.date.substr(0, 10)} </td>
+                    <td> {d.date_decision.substr(0, 10)} </td>
                     <td> {d.id_reunion} </td>
                     <td> {d.id_recours} </td>
-                    <td className={d.decision_sujet.toLowerCase() === "accepté"  ? "accepté" : "rejeté"} > 
-                      {d.decision_sujet.toLowerCase() === "accepté"  ? "Accepté" : "Rejeté"}
+                    <td className={(d.decision_sujet !== null && d.decision_sujet.toLowerCase() === "accepté")  ? "accepté" : "rejeté"} > 
+                      {(d.decision_sujet !== null && d.decision_sujet.toLowerCase() === "accepté")  ? "Accepté" : "Rejeté"}
                     </td>
                     <td>
-                      <Button variant="outline-primary"> Imprimer </Button>
+                      <Button variant="outline-primary" onClick={() => setShowDecision({afficher: true, decision: d})}> Imprimer </Button>
                     </td>
                   </tr>
                 ))
@@ -291,6 +298,9 @@ const Consulter_D = () => {
           </table>
         </div>
       </div>
+
+      { showDecision.afficher && <AffichageDecision showDecision={showDecision} setShowDecision={setShowDecision} /> }
+
     </>
   )
   

@@ -4,10 +4,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 
+
 // eslint-disable-next-line
 import Login from "./../login/Login";
 
 const Landing = () => {
+
+
   const [showLogin, setShowLogin] = useState(false);
 
   return (
@@ -39,6 +42,9 @@ const Landing = () => {
           <Button variant="dark">S'identifier</Button>
         </Container>
       </Navbar> */}
+
+
+
     </>
   );
 };

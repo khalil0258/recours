@@ -1,6 +1,5 @@
 
-
-.container_afficher_document{
+.container_afficher_decision{
     position: fixed;
     top: 0;
     left: 0;
@@ -10,33 +9,33 @@
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, .7); 
-    z-index: 2000;
+    z-index: 1000;
     animation: anim_opacity .5s;
 }
-.container_afficher_document .boite {
+.container_afficher_decision .boite {
     position: relative;
-    width: 950px;
+    width: 900px;
     height: 98%;
     background: rgba(0, 0, 0, 0); 
+    /* background-color: white;  */
     border-radius: 5px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     animation: anim_boite .5s;
-    padding: 14px 20px 0px 20px;
 }
-.container_afficher_document[aria-hidden="true"]{
+.container_afficher_decision[aria-hidden="true"]{
     animation: anim_opacity2 .3s;
 }
-.container_afficher_document[aria-hidden="true"] .boite{
+.container_afficher_decision[aria-hidden="true"] .boite{
     animation: slideToButtom .2s;
 }
 
 
-.container_afficher_document .boite .fermer_document{
+.container_afficher_decision .boite .fermer_decision{
     position:absolute;
-    top: 2px;
-    right: 8px;
+    top: 0px;
+    right:93px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,39 +47,41 @@
     border: 1px solid red;
     border-radius: 50%;
     transition: .3s;
-    z-index: 100;
 }
-.container_afficher_document .boite .fermer_document i{
+.container_afficher_decision .boite .fermer_decision i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
     font-size: 32px;
 }
-.container_afficher_document .boite .fermer_document:hover{
+.container_afficher_decision .boite .fermer_decision:hover{
     background-color: white;
     color: red;
 }
 
-
-/* le body de la boite */
-.container_afficher_document .boite .boite-body{
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto;
+/* le body */
+.container_afficher_decision .boite-body {
+    width: 100%;
     height: 100%;
+    padding: 20px;
+    z-index: 1;
+    overflow-y: auto; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-
-
-
-#rpv-core__popover-body-inner-toolbar-more-actions{
-    max-height: 500px !important;
+.container_afficher_decision .pdfshow{
+    width: 80%;
+    height: 100vh;
 }
-#rpv-core__popover-body-inner-zoom{
-    max-height: 300px !important;
+.container_afficher_decision .boite-body button{
+    margin-top: 8px;
 }
-.rpv-default-layout__toolbar{
-    padding-right: 20px;
-}
+
 
 
 

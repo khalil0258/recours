@@ -168,7 +168,7 @@ const getDocuments =async (req, res) => {
 //get Decisions
 const getDecisions = async(req, res)=>{
 
-  const sql='select * from decisions';
+  const sql= "SELECT decisions.*, reunions.date AS date_reunion, decisions.date AS date_decision FROM decisions JOIN reunions ON decisions.id_reunion = reunions.id_reunion" ;
   db.query(sql, (err, result)=>{
       if(err)
           return res.json({statut: "erreur", message: "Une erreur est survenue"});
@@ -178,9 +178,23 @@ const getDecisions = async(req, res)=>{
 }
 
 
+// envoyer un seul recours selon l'id recu
+const getRecours2 = async (req, res) => {
+  const id = req.params.id;
+  console.log(id)
+  const sql = 'SELECT recours.*, agences.nom_agence FROM recours LEFT JOIN agences ON recours.id_agence = agences.id_agence WHERE recours.id_recours = ?';
+  db.query(sql, [id], (err, result)=>{
+      if(err)
+          return res.json({statut: "erreur", message: "Une erreur est survenue"});
+      else
+          return res.json({statut: "success", resultat: result[0]})
+  })
+}
 
 
-module.exports={soumetreRecours, soumetre_piece, getRecours, verfication, getDocuments, getDecisions}
+
+
+module.exports={soumetreRecours, soumetre_piece, getRecours, verfication, getDocuments, getDecisions, getRecours2}
   
   
 //   db = require('./../../db/connect');
