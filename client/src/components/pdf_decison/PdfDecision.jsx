@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Document, Page, Text, View, StyleSheet, Image, Font } from "@react-pdf/renderer";
 import roboto from './../../assets/font_roboto/Roboto-Bold.ttf';
 
+/* import { useSelector } from "react-redux"; */
+
 Font.register({ family: 'Roboto', src: roboto });
 
 // Create styles
@@ -84,6 +86,12 @@ const styles = StyleSheet.create({
         lineHeight: "1.5",
         width: "100%"
     },
+    nom: {
+        textTransform: "uppercase"
+    },
+    prenom: {
+        textTransform: "capitalize"
+    },
     decision: {
         display: "flex",
         flexDirection: "column",
@@ -145,9 +153,11 @@ const styles = StyleSheet.create({
     }
   });
 
-function PdfDecision({decision}) {
+function PdfDecision({decision, userinfos}) {
 
     const [recours, setRecours] = useState('') ;
+
+    //console.log(userinfos)
 
     useEffect(() => {
         const id = decision.id_recours;
@@ -176,29 +186,32 @@ function PdfDecision({decision}) {
         return dateInverse;
       }
 
+      /* const user = useSelector((state) => state.auth?.userInfos);
+      console.log(user) */
+
       let infos = "" ;
       if(recours !== ''){
         if(recours.commission.toLowerCase() === "locale"){
             infos = 
                 <Text>
-                    - En vertu du recours déposé par M./Mme. <Text style={styles.bold}>DEBICHE Hakim</Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>007 5678765 12</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text> et concernant : <Text style={styles.bold}>{recours.objet}</Text>.
+                    - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text> et concernant : <Text style={styles.bold}>{recours.objet}</Text>.
                 </Text>
             
         }else{
             if(recours.motif.toLowerCase() === "contester la décision de la commission locale")
                 infos = 
                     <Text>
-                        - En vertu du recours déposé par M./Mme. <Text style={styles.bold}>DEBICHE Hakim</Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>007 5678765 12</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text> et concernant : <Text style={styles.bold}>{recours.objet}</Text>.
+                        - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text> et concernant : <Text style={styles.bold}>{recours.objet}</Text>.
                     </Text>
             else if(recours.motif.toLowerCase() === "montant de pr/mr supérieur à 1 000 000 da")
                 infos = 
                     <Text>
-                        - En vertu du recours déposé par M./Mme.<Text style={styles.bold}>DEBICHE Hakim</Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>007 5678765 12</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text>, concernant : <Text style={styles.bold}>{recours.objet}</Text> et dont le montant dépasse 1 000 000 DA.
+                        - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text>, concernant : <Text style={styles.bold}>{recours.objet}</Text> et dont le montant dépasse 1 000 000 DA.
                     </Text>
             else 
                 infos =
                     <Text>
-                        - En vertu du recours déposé par M./Mme. <Text style={styles.bold}>DEBICHE Hakim</Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>007 5678765 12</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text>, concernant : <Text style={styles.bold}>{recours.objet}</Text> et dont la commission locale n'a pas répondu dans un délai de 60 jours à compter de la date de soummission du recours.
+                        - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text>, concernant : <Text style={styles.bold}>{recours.objet}</Text> et dont la commission locale n'a pas répondu dans un délai de 60 jours à compter de la date de soummission du recours.
                     </Text>
           }
       }
