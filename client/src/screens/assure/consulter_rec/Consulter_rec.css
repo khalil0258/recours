@@ -9,13 +9,20 @@
     background-color: white;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
 }
+
+.container_recours .table-container {
+    width: 100%;
+    margin-top: 15px;
+}
+
 .container_recours h1{
     margin-bottom: 20px;
 }
 
 .container_recours table{
-    width: 100%;
-    margin: 15px;
+    width: auto;
+    min-width: 100%; /* Ajuste la largeur du tableau au contenu */
+    border-collapse: collapse;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 .container_recours table thead{
@@ -52,19 +59,20 @@
 }
 
 /* filter css */
-.filter{
+.recours_filter{
     width: 100%;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 /* show entries */
-.showEntries{
+.recours_filter .showEntries{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
 }
-.showInput{
+.recours_filter .showInput{
     margin: 0px 8px 0px 8px;
     padding: 2px 12px 4px 2px;
     border: 1px solid black;
@@ -73,7 +81,7 @@
 }
 
 /* drop down */
-.dropdown {
+.recours_filter .dropdown {
     margin-left: 30px;
     margin-right: 35px;
     /* display: flex;
@@ -81,45 +89,46 @@
     align-items: center;
     flex-direction: row; */
 }
-.btn-filtrer { 
+.recours_filter .btn-filtrer { 
     background-color: #fdfdfd;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
     padding: 8px;
     border: 1px solid black;
 }
-.btn-filtrer:hover { 
+.recours_filter .btn-filtrer:hover { 
     transform: scale(0.97);
 	transition: .3s;
     border: 1px solid black;
 }
-.dropdown-item{
+.recours_filter .dropdown-item{
     cursor: pointer;
 }
 
 /* l'input a afficher selon le filter choisi */
-.filterInput{
+.recours_filterInput{
     display: flex;
     justify-content: left;
     align-items: center;
     flex-direction: row;
     width: 320px;
 }
-.filterInput.date{
+
+.recours_filterInput.date{
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2),
               -2px -2px 5px rgba(0, 0, 0, 0.2);
-    padding: 4px 4px 4px 14px;
+    padding: 4px 14px 4px 14px;
     border-radius: 3px;
     width: 300px;
 }
 
-.filterInput select{
+.recours_filterInput select{
     padding: 6px 10px 6px 4px;
     border: 1px solid black;
     outline: none;
     cursor: pointer;
     width: 100%;
 }
-.filterInput input{
+.recours_filterInput input{
     width: 150px;
     height: 30px;
     border: 1px solid black;
@@ -128,31 +137,116 @@
     padding: 0px 4px 0px 8px;
     border-radius: 3px;
 }
-.filterInput.date button{
+.recours_filterInput.date button{
     padding: 3px 5px 3px 5px;
     border-radius: 3px;
+    width: 97px;
 }
 
 
 
 
-
-@media only screen and (max-width: 730px){
-	.filter{
+/* le div contenant tous les critere de filter  */
+@media only screen and (max-width: 880px){
+	.recours_filter{
         flex-direction: column;
-    }
-    .dropdown {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .filter{
         justify-content: center;
         align-items: center;
     }
+    .recours_filter .dropdown {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 }
 
-@media only screen and (max-width: 400px){
-    .filterInput{
+/* filterInput quand il contient l'input date et pas le selecteur */
+@media only screen and (max-width: 958px){
+	.recours_filterInput.date{
+        flex-direction: column;
+        
+    }
+    .recours_filterInput.date input{
+        margin-right: 0px;
+        margin-bottom: 7px;
+    }
+}
+
+/* filterInput quand il contient l'input date et pas le selecteur */
+@media only screen and (max-width: 880px){
+	.recours_filterInput.date{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        flex-direction: row;
+        
+    }
+    .recours_filterInput.date input{
+        margin-right: 25px;
+        margin-bottom: 0px;
+    }
+}
+
+/* filterInput contenant input date ou le selecteur */
+@media only screen and (max-width: 520px){
+    .recours_filterInput{
+        width: 100%;
+    }
+    .recours_filterInput.date{
         width: 100%;
     }
 }
+
+/* l'input date et le button filtrer */
+@media only screen and (max-width: 520px){
+    .recours_filterInput.date input{
+        width: 100%;
+    }
+    .recours_filterInput.date button{
+        width: 80%;
+    }
+}
+
+/* l'input date et le button filtrer */
+@media only screen and (max-width: 430px){
+    .recours_filterInput.date{
+        flex-direction: column;
+    }
+    .recours_filterInput.date input{
+        margin-right: 0px;
+        margin-bottom: 7px;
+    }
+}
+
+/* show entries */
+@media only screen and (max-width: 340px){
+    .recours_filter .showEntries{
+        flex-direction: column;
+    }
+}
+
+
+/* defilement du tableau */
+@media (max-width: 1217px){
+    .container_recours .table-container {
+        overflow-x: auto; /* Ajoute un défilement horizontal lorsque la largeur dépasse */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+    .container_recours table {
+        min-width: 990px; /* Définit une largeur minimale pour le tableau */
+    }
+    
+    /* Facultatif: styles pour les barres de défilement */
+    /* .container_decision .table-container::-webkit-scrollbar {
+        height: 12px;
+    }
+    
+    .container_decision .table-container::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+    } */
+}
+
+
+
+
+

@@ -7,6 +7,7 @@ import './protected.css';
 
 function ProtectedRoutes({ isAuth,loading }) {
     const [openBar, setOpenBar] = useState(true);
+    const [phone, setPhone] = useState(false);
   console.log(isAuth)
     const sidebarOpener = (value) => {
       setOpenBar(value);
@@ -14,6 +15,7 @@ function ProtectedRoutes({ isAuth,loading }) {
   useEffect(()=>{
 if( window.innerWidth<=650){
   setOpenBar(false)
+  setPhone(true)
 }
   },[])
 
@@ -25,7 +27,7 @@ if( window.innerWidth<=650){
   return (
   <div>
     <div className='app_container'>
-     <SideBar  openBar={openBar} />
+     <SideBar  openBar={openBar} setOpenBar={setOpenBar} phone={phone}/>
       <div className={`maine_container ${!openBar && "expand"}`}>
         <Header sidebarOpener={sidebarOpener} openBar={openBar}/>
 

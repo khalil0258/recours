@@ -28,7 +28,7 @@ const soumetreRecours=async (req,res,next)=>{
    
           
           req.app.locals.path={
-                  id_assure:12,
+                  id_assure:req.session.userinfos.id_assure,
                   id_recours:lastInsertedId
               };
   
@@ -128,16 +128,16 @@ const verfication=async(req,res)=>{
               }
           })
     }else if(+type===2){
-        const q='SELECT id_decision_conteste FROM recours WHERE id_assure = 2 AND DATE(date) = ?';
+        const q='SELECT statut FROM recours WHERE id_assure = ? AND DATE(date) = ?';
          console.log(id_reunion)
-        db.query(q,[id_reunion],(err,result)=>{
+        db.query(q,[req.session.userinfos.id_assure,id_reunion],(err,result)=>{
             if(err)return res.json(err.message);
               console.log("first",result)
             if (result.length > 0) {
      
- 
+ console.log(result)
                 for (const resu of result) {
-                  if (resu.id_decision_conteste === null) {
+                  if (resu.statut==="en cours de traitement") {
                     return res.status(200).json({ message: "Ce recours est déjà effectué au niveau local" });
                   }  
                 }
@@ -165,8 +165,36 @@ const getDocuments =async (req, res) => {
 
 
 
+//get Decisions
+const getDecisions = async(req, res)=>{
 
-module.exports={soumetreRecours,soumetre_piece,getRecours,verfication,getDocuments}
+  const sql= "SELECT decisions.*, reunions.date AS date_reunion, decisions.date AS date_decision FROM decisions JOIN reunions ON decisions.id_reunion = reunions.id_reunion" ;
+  db.query(sql, (err, result)=>{
+      if(err)
+          return res.json({statut: "erreur", message: "Une erreur est survenue"});
+      else
+          return res.json({statut: "success", resultat: result})
+  })
+}
+
+
+// envoyer un seul recours selon l'id recu
+const getRecours2 = async (req, res) => {
+  const id = req.params.id;
+  console.log(id)
+  const sql = 'SELECT recours.*, agences.nom_agence FROM recours LEFT JOIN agences ON recours.id_agence = agences.id_agence WHERE recours.id_recours = ?';
+  db.query(sql, [id], (err, result)=>{
+      if(err)
+          return res.json({statut: "erreur", message: "Une erreur est survenue"});
+      else
+          return res.json({statut: "success", resultat: result[0]})
+  })
+}
+
+
+
+
+module.exports={soumetreRecours, soumetre_piece, getRecours, verfication, getDocuments, getDecisions, getRecours2}
   
   
 //   db = require('./../../db/connect');

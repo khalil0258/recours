@@ -3,8 +3,7 @@ const db = require('./../../db/connect');
  
 
 // ---------login ------------
-const login = async (req, res) => {console.log(req.session.userInfos)
-  console.log("je")
+const login = async (req, res) => {
   const values = [
     req.body.email,
     req.body.mdp
