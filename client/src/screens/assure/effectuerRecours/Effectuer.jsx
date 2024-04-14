@@ -13,7 +13,11 @@ const Effectuer = () => {
   const [selectedStep, setSelectedStep] = useState({ etape: 1, valide: false });
   const [stepe, setStepe] = useState(1);
   const [errore, setErrore] = useState({ error: false, message: "" });
-  const [checking, setChecking] = useState({ type: 1, input1: "", input2: "" });
+  const [checking, setChecking] = useState({
+    type: null,
+    input1: "",
+    input2: "",
+  });
   const [accuse, setAccuse] = useState({});
   // console.log(new Date().getTime());
   const [formData, setFormData] = useState({
@@ -26,7 +30,6 @@ const Effectuer = () => {
     secondFile: null,
     thirdFiles: {},
   });
-  console.log(formData.thirdFiles);
 
   const handleFileChange = (event) => {
     if (event.target.className.includes("fileOne")) {
@@ -81,23 +84,24 @@ const Effectuer = () => {
         const path = JSON.stringify({
           emetteur: formData.commission === "Locale" ? "" : "assure",
           commission: formData.commission,
-          id_assure: 1,
-          id_agence: 3,
-          motif: formData.commission === "Locale" ? "" : formData.motif,
+          id_assure: 2,
+          id_agence: 9,
+          motif: formData.commission === "Locale" ? null : formData.motif,
           volet: formData.volet,
           objet: formData.objet,
         });
         console.log("path", path, typeof path);
         let response = await soumetre_recours(path, dataForme);
-        console.log(response.request.statusText);
+        console.log(response?.request.statusText);
         if (
           response?.status === 200 &&
           response?.data.success === "Recours ajoute avec succes"
         ) {
           await getUserInfos().then((res) => {
+            console.log(res);
             setAccuse({
-              nom: res.data?.data[0].nom,
-              prenom: res.data?.data[0].prenom,
+              nom: res.data?.data[0]?.nom,
+              prenom: res.data?.data[0]?.prenom,
               date_de_naissance: new Date(res.data?.data[0]?.date_naissance)
                 .toLocaleString()
                 .slice(0, 10),
@@ -118,7 +122,8 @@ const Effectuer = () => {
         });
       }
     } else if (stepe === 2) {
-      console.log("checkin", formData.motif);
+      // console.log("checkin", formData.motif);
+      console.log(checking.type);
       if (formData.commission === "National" && formData.motif.length > 1) {
         // hna yesra ga3 logic ta3 verifiication
         console.log(checking.type === 3);
@@ -133,10 +138,10 @@ const Effectuer = () => {
             1
           );
           if (
-            response1.data.message !==
+            response1?.data.message !==
             "Ce recours est déjà effectué au niveau local"
           ) {
-            setErrore({ error: true, message: response1.data.message });
+            setErrore({ error: true, message: response1?.data.message });
           } else {
             setErrore({});
             setSelectedStep({ etape: 2, valide: true });
@@ -162,12 +167,12 @@ const Effectuer = () => {
 
             console.log("for", formattedDate); // Output: "2023-03-28" (for example)
             const response2 = await checkTheLocal(formattedDate, "", 2);
-            console.log(response2);
+            // console.log(response2);
             if (
-              response2.data.message !==
+              response2?.data.message !==
               "Ce recours est déjà effectué au niveau local"
             ) {
-              setErrore({ error: true, message: response2.data?.message });
+              setErrore({ error: true, message: response2?.data?.message });
             } else {
               setErrore({});
               setSelectedStep({ etape: 2, valide: true });
@@ -179,10 +184,18 @@ const Effectuer = () => {
               message: "la date que vous avez saisi n'a pas depassé 60 jours",
             });
           }
-        } else if (checking.type === 3) {
-          setErrore({});
-          setSelectedStep({ etape: 3, valide: true });
-          setStepe((prev) => prev + 1);
+        } else if (checking.type === 3 && checking.input1.trim().length > 0) {
+          if (checking.input1 < 100000) {
+            console.log("montant", stepe, errore);
+            setErrore({
+              error: true,
+              message: "montant inferieur a 100 millions centimes",
+            });
+          } else {
+            setErrore({});
+            setSelectedStep({ etape: 3, valide: true });
+            setStepe((prev) => prev + 1);
+          }
         }
       } else if (formData.commission === "Locale") {
         // setErrore({});
@@ -270,7 +283,7 @@ const Effectuer = () => {
             />
           )}
           {/* message error  */}
-          {stepe !== 1 && errore?.error && (
+          {stepe !== 1 && !!errore?.error && (
             <div className="error_message">
               <p>{errore.message}</p>
             </div>

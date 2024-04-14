@@ -17,7 +17,7 @@ const Message_valide = ({ data }) => {
         </div>
         <PDFDownloadLink
           document={<AccuserPdf data={data} />}
-          fileName="accuse"
+          fileName="accuse_reception"
         >
           {({ loading }) =>
             loading ? (

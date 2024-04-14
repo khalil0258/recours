@@ -4,15 +4,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 
-
 // eslint-disable-next-line
 import Login from "./../login/Login";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import Header from "../../components/oflline/Header";
 
 const Landing = () => {
-
-
   const [showLogin, setShowLogin] = useState(false);
   const navigate = useNavigate();
   const userInfos = useSelector((state) => state.auth.userInfos);
@@ -27,35 +25,10 @@ const Landing = () => {
   if (userInfos?.connected === false && loading === false) {
     return (
       <>
-        <Navbar bg="dark" data-bs-theme="dark">
-          <Container>
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-            <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
-            </Nav>
-            <Button variant="success" onClick={() => setShowLogin(true)}>
-              S'identifier
-            </Button>
-          </Container>
-        </Navbar>
-
+        <Header setShowLogin={setShowLogin} />
         {showLogin && (
           <Login setShowLogin={setShowLogin} showLogin={showLogin} />
         )}
-
-        {/* <Navbar bg="primary" data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-          <Button variant="dark">S'identifier</Button>
-        </Container>
-      </Navbar> */}
       </>
     );
   }

@@ -28,7 +28,7 @@ const soumetreRecours=async (req,res,next)=>{
    
           
           req.app.locals.path={
-                  id_assure:12,
+                  id_assure:req.session.userinfos.id_assure,
                   id_recours:lastInsertedId
               };
   
@@ -128,16 +128,16 @@ const verfication=async(req,res)=>{
               }
           })
     }else if(+type===2){
-        const q='SELECT id_decision_conteste FROM recours WHERE id_assure = 2 AND DATE(date) = ?';
+        const q='SELECT statut FROM recours WHERE id_assure = ? AND DATE(date) = ?';
          console.log(id_reunion)
-        db.query(q,[id_reunion],(err,result)=>{
+        db.query(q,[req.session.userinfos.id_assure,id_reunion],(err,result)=>{
             if(err)return res.json(err.message);
               console.log("first",result)
             if (result.length > 0) {
      
- 
+ console.log(result)
                 for (const resu of result) {
-                  if (resu.id_decision_conteste === null) {
+                  if (resu.statut==="en cours de traitement") {
                     return res.status(200).json({ message: "Ce recours est déjà effectué au niveau local" });
                   }  
                 }

@@ -49,6 +49,7 @@ const RouteContainer = () => {
             <Route path="consulter_recours" element={<ConsulterRec />} exact />
             <Route path="consulter_decisions" element={<ConsulterD />} exact />
             <Route path="mon_profile" element={<Compte />} exact />
+            <Route path="*" element={<Home />} />
           </Route>
           {/* apres ndiro ta3 secretaire  */}
         </Routes>

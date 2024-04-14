@@ -11,8 +11,12 @@ import {
 // Create styles
 const styles = StyleSheet.create({
   page: {
+    width: "803px",
+    height: "1132px",
     backgroundColor: "white",
-    padding: "30px",
+    padding: "20px 30px 20px 30px",
+    textAlign: "justify",
+    position: "relative",
   },
   section: {
     flexDirection: "row",
@@ -22,37 +26,43 @@ const styles = StyleSheet.create({
     fontSize: "12px",
   },
   right: {
-    width: "25%",
+    width: "30%",
     textAlign: "left",
     fontSize: "10px",
     alignItems: "center",
-  },
-  accuse: {
-    border: "2px solid black",
-    padding: "10px 40px",
-    textAlign: "center",
-    margin: "10px 0",
   },
   center: {
     width: "40%",
     textAlign: "center",
     flexDirection: "column",
     alignItems: "center",
-
     fontSize: "12px",
   },
   left: {
-    width: "25%",
+    width: "30%",
     fontSize: "10px",
-    alignItems: "flex-end",
+
+    flexDirection: "row",
+
+    justifyContent: "flex-end",
   },
   logo: {
-    width: "60%",
-    height: "70px",
+    width: "80px",
+    marginRight: "30px",
+    position: "relative",
+    left: "30px",
     objectFit: "contain",
   },
+  reception: { textAlign: "center", width: "auto" },
+  accuse: {
+    border: "2px solid black",
+    padding: "10px 40px",
+    textAlign: "center",
+    margin: "10px 0",
+  },
+  article: { fontSize: "12px" },
   infosContainer: {
-    margin: "100px 0",
+    margin: "60px 0",
     textAlign: "left",
     width: "100%",
   },
@@ -61,7 +71,7 @@ const styles = StyleSheet.create({
     gap: "20px",
   },
   volet: { marginTop: "20px" },
-  text: { margin: "5px 0 0", fontWeight: "200" },
+  text: { margin: "5px 0 0", fontWeight: "200", fontSize: "12px" },
   depose: {
     margin: "20px 30px  0",
     fontSize: "11px",
@@ -97,11 +107,6 @@ const AccuserPdf = ({ data }) => {
             <Text>
               La Caisse Nationale de Sécurité Sociale des Non-Salariés
             </Text>
-            <Text style={styles.accuse}>Accuse de reception</Text>
-            <Text>
-              Article 13 de la loi n°08-08 du 23 février 2008 relative aux
-              recouvrement dans le domaine de la sécurité sociale
-            </Text>
           </View>
           {/* hadi ta3 picture ta3 casnos  */}
           <View style={styles.left}>
@@ -110,6 +115,13 @@ const AccuserPdf = ({ data }) => {
               src={require("../../assets/casnos.png")}
             />
           </View>
+        </View>
+        <View style={styles.reception}>
+          <Text style={styles.accuse}>Accuse de reception</Text>
+          <Text style={styles.article}>
+            Article 13 de la loi n°08-08 du 23 février 2008 relative aux
+            recouvrement dans le domaine de la sécurité sociale
+          </Text>
         </View>
         {/* hnaa tji les information  */}
         <View style={styles.infosContainer}>

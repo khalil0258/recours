@@ -12,6 +12,8 @@ const ChoixCommission = ({
   // Event handler to handle changes in the select element
 
   const handleChangeReason = (event) => {
+    console.log(checking, choixCommission);
+    // setErrore({});
     setFormData((prev) => ({
       ...prev,
       motif: formData?.commission === "Locale" ? "" : event.target.value,
@@ -22,20 +24,28 @@ const ChoixCommission = ({
         type:
           event.target.value === "Decision"
             ? 1
-            : event.target.value === "Montant"
-            ? 3
             : event.target.value === "Delais"
+            ? 2
+            : event.target.value === "Montant"
             ? 3
             : null,
       }));
+      console.log(checking);
       setSelectedReason(event.target.value);
+      // console.log(selectedReason, event.target.value);
     }
   };
-
+  useEffect(() => {
+    // console.log(checking);
+  }, [checking.type]);
   useEffect(() => {
     if (!!formData.motif) {
       setSelectedReason(formData?.motif);
     }
+    if (!!formData.commission) {
+      setChoixCommission(formData?.commission);
+    }
+    // console.log
   }, [formData.motif]);
 
   return (
@@ -99,12 +109,12 @@ const ChoixCommission = ({
               <option value="Decision">
                 Contester la décision de la commission locale
               </option>
-              <option value="Montant">
-                Montant PR/MR supérieur à 1 000 000 DA
-              </option>
               <option value="Delais">
                 Le délai de la réponse de la commission locale a dépassé 60
                 jours
+              </option>
+              <option value="Montant">
+                Montant PR/MR supérieur à 1 000 000 DA
               </option>
             </select>
           </div>
@@ -117,21 +127,15 @@ const ChoixCommission = ({
                 type="number"
                 placeholder="Entrez le montant de PR"
                 onChange={(event) => {
-                  if (event.target.value < 100000) {
-                    setErrore({
-                      Error: true,
-                      message: "montant inferieur a 100 millions centimes",
-                    });
-                  } else {
-                    setChecking((prev) => ({
-                      ...prev,
-                      input1: event.target.value,
-                    }));
-                    setFormData((prev) => ({
-                      ...prev,
-                      nationalInputs: { input1: event.target.value },
-                    }));
-                  }
+                  console.log("first2");
+                  setChecking((prev) => ({
+                    ...prev,
+                    input1: event.target.value,
+                  }));
+                  setFormData((prev) => ({
+                    ...prev,
+                    nationalInputs: { input1: event.target.value },
+                  }));
                 }}
               />
             </div>
