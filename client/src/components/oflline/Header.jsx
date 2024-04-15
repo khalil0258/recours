@@ -8,7 +8,7 @@ const Header = ({ setShowLogin }) => {
     setLaydown(false);
   }, []);
   return (
-    <div className={`header `}>
+    <div className={`headerOffline `}>
       {/* icon div  */}
       <div
         className="bar_icon"
