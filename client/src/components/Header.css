@@ -28,7 +28,8 @@
  
     align-items: center !important;
 }
-.header .bar_icon{
+.header> .bar_icon{
+ 
 cursor: pointer;
 font-size: 24px;
 }
