@@ -7,17 +7,20 @@ import ChoixCommission from "../../../components/recours_controllers/ChoixCommis
 import Choix_objet from "../../../components/recours_controllers/Choix_objet";
 import JoindreFiles from "../../../components/recours_controllers/JoindreFiles";
 import Message_valide from "../../../components/recours_controllers/Message_valide";
+import { useSelector } from "react-redux";
 
 const Effectuer = () => {
   const [som, setSom] = useState([]);
   const [selectedStep, setSelectedStep] = useState({ etape: 1, valide: false });
   const [stepe, setStepe] = useState(1);
   const [errore, setErrore] = useState({ error: false, message: "" });
+  const userInfos = useSelector((state) => state.auth.userInfos);
   const [checking, setChecking] = useState({
     type: null,
     input1: "",
     input2: "",
   });
+  console.log(userInfos.userinfos);
   const [accuse, setAccuse] = useState({});
   // console.log(new Date().getTime());
   const [formData, setFormData] = useState({
@@ -84,8 +87,8 @@ const Effectuer = () => {
         const path = JSON.stringify({
           emetteur: formData.commission === "Locale" ? "" : "assure",
           commission: formData.commission,
-          id_assure: 2,
-          id_agence: 9,
+          id_assure: userInfos?.userinfos?.id_assure,
+          id_agence: userInfos?.userinfos?.id_agence,
           motif: formData.commission === "Locale" ? null : formData.motif,
           volet: formData.volet,
           objet: formData.objet,
