@@ -52,21 +52,21 @@ const Effectuer = () => {
 
   // general
   function handleSelectedStep(event) {
-    console.log(formData, stepe);
+    //console.log(formData, stepe);
     if (stepe === 1) {
       let valide = event.target.value;
 
       setSelectedStep({ etape: 1, valide: !!valide });
     }
     if (stepe === 3 && !!formData.objet.trim().length) {
-      console.log("fdf", formData.objet);
+      //console.log("fdf", formData.objet);
       setSelectedStep({ etape: 3, valide: !!formData.objet });
     }
   }
 
   // handle next pour suivant button
   const handleNext = async () => {
-    console.log(stepe, selectedStep.etape, selectedStep.valide, formData.objet);
+    //console.log(stepe, selectedStep.etape, selectedStep.valide, formData.objet);
     // console.log(formData, stepe, selectedStep?.valide);
     if (stepe === 4) {
       if (!!formData.firstFile && !!formData.secondFile) {
@@ -84,21 +84,21 @@ const Effectuer = () => {
         const path = JSON.stringify({
           emetteur: formData.commission === "Locale" ? "" : "assure",
           commission: formData.commission,
-          id_assure: 2,
-          id_agence: 9,
+          id_assure: 1,
+          id_agence: 1,
           motif: formData.commission === "Locale" ? null : formData.motif,
           volet: formData.volet,
           objet: formData.objet,
         });
-        console.log("path", path, typeof path);
+        //console.log("path", path, typeof path);
         let response = await soumetre_recours(path, dataForme);
-        console.log(response?.request.statusText);
+        //console.log(response?.request.statusText);
         if (
           response?.status === 200 &&
           response?.data.success === "Recours ajoute avec succes"
         ) {
           await getUserInfos().then((res) => {
-            console.log(res);
+            //console.log(res);
             setAccuse({
               nom: res.data?.data[0]?.nom,
               prenom: res.data?.data[0]?.prenom,
@@ -123,10 +123,10 @@ const Effectuer = () => {
       }
     } else if (stepe === 2) {
       // console.log("checkin", formData.motif);
-      console.log(checking.type);
+      //console.log(checking.type);
       if (formData.commission === "National" && formData.motif.length > 1) {
         // hna yesra ga3 logic ta3 verifiication
-        console.log(checking.type === 3);
+        //console.log(checking.type === 3);
         if (
           checking.type === 1 &&
           checking.input1.trim().length > 0 &&
@@ -150,10 +150,10 @@ const Effectuer = () => {
           // console.log(response1);
         } else if (checking.type === 2 && checking.input1.trim().length > 0) {
           // delais type
-          console.log(new Date(checking.input1).toISOString());
+          //console.log(new Date(checking.input1).toISOString());
           const oldDate = new Date(checking.input1);
           const result = isDaysOlder(oldDate, new Date(), 60);
-          console.log("ress", result);
+          //console.log("ress", result);
           if (!!result) {
             setErrore({});
             const year = oldDate.getFullYear(); // Get the year (e.g., 2023)
@@ -165,7 +165,7 @@ const Effectuer = () => {
               month < 10 ? "0" + month : month
             }-${day < 10 ? "0" + day : day}`;
 
-            console.log("for", formattedDate); // Output: "2023-03-28" (for example)
+            //console.log("for", formattedDate); // Output: "2023-03-28" (for example)
             const response2 = await checkTheLocal(formattedDate, "", 2);
             // console.log(response2);
             if (
@@ -203,9 +203,9 @@ const Effectuer = () => {
         setStepe((prev) => prev + 1);
       }
     } else if (stepe < 4 && selectedStep?.valide && selectedStep?.etape != 2) {
-      console.log(stepe);
-      console.log("sed", selectedStep);
-      console.log("sed", !!formData.objet);
+      //console.log(stepe);
+      //console.log("sed", selectedStep);
+      //console.log("sed", !!formData.objet);
       setStepe((prev) => prev + 1);
     }
     // console.log(stepe, selectedStep, selectedStep[stepe - 1]?.valide);s
@@ -229,11 +229,11 @@ const Effectuer = () => {
 
   // handle retour
   const handleRetour = () => {
-    console.log(formData);
+    //console.log(formData);
     if (stepe > 1) {
       setStepe((prev) => prev - 1);
     }
-    console.log("swwlw", selectedStep);
+    //console.log("swwlw", selectedStep);
   };
   // steps
   const steps = [

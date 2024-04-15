@@ -5,7 +5,7 @@ axios.defaults.withCredentials=true;
 // for the national verification 
 export const checkTheLocal=async(id_reunion,id_decision,type)=>{
  try { 
-    console.log(typeof(id_reunion))
+    //console.log(typeof(id_reunion))
     const path = `http://localhost:4000/recours/verification`;
     const queryParams = new URLSearchParams();
     queryParams.append('id_reunion', id_reunion);
