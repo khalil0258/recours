@@ -17,7 +17,7 @@ const login = async (req, res) => {
         //console.log(req.session)
         req.session.userinfos = result[0] ;
         req.session.save();
-        console.log("ello",req.session.userinfos)
+        //console.log("ello",req.session.userinfos)
         return res.json({connected: true,data:req.session.userinfos})
     } else {
         return res.json({statut: "erreur", message: "Email ou Mot de Passe incorrect"})

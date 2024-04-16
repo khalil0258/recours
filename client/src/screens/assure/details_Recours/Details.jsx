@@ -69,7 +69,7 @@ function Details({setShowDetail, showDetail}) {
                         <div className="infos">
                             <p> <span>Référence du recours : </span> {recours.id_recours} </p>
                             <p> <span> Objet du recours : </span> {recours.objet} </p>
-                            <p> <span> Date d'envoi : </span> {recours.date.substring(0, 10)} </p>
+                            <p> <span> Date d'envoi : </span> {new Date(recours.date).toLocaleDateString()} </p>
                             <p> <span> Commission concernée : </span> {recours.commission} </p>
                             {recours.motif !== null && <p> <span> Le motif : </span> {recours.motif} </p>}
                             <p> <span> Le statut : </span> {recours.statut} </p> 
@@ -115,9 +115,9 @@ function Details({setShowDetail, showDetail}) {
                         
                     </div>
 
-                    <div className="boite-footer">
+                    {/* <div className="boite-footer">
                         <Button variant="outline-danger"> Annuler le recours </Button>
-                    </div>
+                    </div> */}
 
                 </div>
 

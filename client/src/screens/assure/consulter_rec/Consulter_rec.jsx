@@ -42,8 +42,10 @@ const Consulter_rec = () => {
           //console.log(res);
         } else {
           //console.log(res.data)
-          setAllRecours(res.data.resultat);
-          setRecours(res.data.resultat);
+          const rec = res.data.resultat.reverse();
+          setAllRecours(rec);
+          setRecours(rec);
+
         }
       })
       .catch((err) => {
@@ -276,7 +278,7 @@ const Consulter_rec = () => {
                   <tr key={r.id_recours}>
                     <td> {r.id_recours} </td>
                     <td> {r.objet} </td>
-                    <td> {r.date.substr(0, 10)} </td>
+                    <td> {new Date(r.date).toLocaleDateString()} </td>
                     <td> {r.commission} </td>
                     <td
                       id={

@@ -177,15 +177,6 @@ function PdfDecision({decision, userinfos}) {
           // eslint-disable-next-line
       }, []);
 
-      // fonction pour inverser la date et commencer par jour
-      function inverserDate(dateString) {
-        // Fractionner la chaîne de caractères de la date en parties (année, mois, jour)
-        const [annee, mois, jour] = dateString.split('-');
-        // Réorganiser les parties pour obtenir le format "dd-mm-yyyy"
-        const dateInverse = `${jour}-${mois}-${annee}`;
-        return dateInverse;
-      }
-
       /* const user = useSelector((state) => state.auth?.userInfos);
       console.log(user) */
 
@@ -194,24 +185,24 @@ function PdfDecision({decision, userinfos}) {
         if(recours.commission.toLowerCase() === "locale"){
             infos = 
                 <Text>
-                    - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text> et concernant : <Text style={styles.bold}>{recours.objet}</Text>.
+                    - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{new Date(recours.date).toLocaleDateString()}</Text> et concernant : <Text style={styles.bold}>{recours.objet}</Text>.
                 </Text>
             
         }else{
             if(recours.motif.toLowerCase() === "contester la décision de la commission locale")
                 infos = 
                     <Text>
-                        - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text> et concernant : <Text style={styles.bold}>{recours.objet}</Text>.
+                        - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{new Date(recours.date).toLocaleDateString()}</Text> et concernant : <Text style={styles.bold}>{recours.objet}</Text>.
                     </Text>
             else if(recours.motif.toLowerCase() === "montant de pr/mr supérieur à 1 000 000 da")
                 infos = 
                     <Text>
-                        - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text>, concernant : <Text style={styles.bold}>{recours.objet}</Text> et dont le montant dépasse 1 000 000 DA.
+                        - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{new Date(recours.date).toLocaleDateString()}</Text>, concernant : <Text style={styles.bold}>{recours.objet}</Text> et dont le montant dépasse 1 000 000 DA.
                     </Text>
             else 
                 infos =
                     <Text>
-                        - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{inverserDate(recours.date.substring(0, 10))}</Text>, concernant : <Text style={styles.bold}>{recours.objet}</Text> et dont la commission locale n'a pas répondu dans un délai de 60 jours à compter de la date de soummission du recours.
+                        - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{new Date(recours.date).toLocaleDateString()}</Text>, concernant : <Text style={styles.bold}>{recours.objet}</Text> et dont la commission locale n'a pas répondu dans un délai de 60 jours à compter de la date de soummission du recours.
                     </Text>
           }
       }
@@ -294,7 +285,7 @@ function PdfDecision({decision, userinfos}) {
                 {infos}
                 
                 <Text style={styles.infos}>
-                    - À la suite des délibérations lors de la réunion tenue le :  <Text style={styles.bold}>{inverserDate(decision.date_reunion.substring(0, 10))}</Text>, session numéro :  <Text style={styles.bold}>{decision.id_reunion}</Text>, la commission a décidé:
+                    - À la suite des délibérations lors de la réunion tenue le :  <Text style={styles.bold}>{new Date(decision.date_reunion).toLocaleDateString()}</Text>, session numéro :  <Text style={styles.bold}>{decision.id_reunion}</Text>, la commission a décidé:
                 </Text>
             </View>
 
@@ -322,7 +313,7 @@ function PdfDecision({decision, userinfos}) {
 
             <View style={styles.date_decision}>
                 <Text>
-                    <Text style={styles.bold}> Rédigé le : </Text>  {inverserDate(decision.date_decision.substring(0, 10))}
+                    <Text style={styles.bold}> Rédigé le : </Text>  {new Date(decision.date_decision).toLocaleDateString()}
                 </Text>
             </View>
 

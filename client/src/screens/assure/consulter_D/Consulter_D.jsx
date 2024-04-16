@@ -41,9 +41,9 @@ const Consulter_D = () => {
           //console.log(res);
         } else {
           //console.log(res.data.resultat)
-          setAllDecisions(res.data.resultat);
-          setDecisions(res.data.resultat);
-          //console.log(res.data.resultat[1].decision_sujet)
+          const d = res.data.resultat.reverse();
+          setAllDecisions(d);
+          setDecisions(d);
         }
       })
       .catch((err) => {
@@ -196,7 +196,7 @@ const Consulter_D = () => {
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
-            <span>Recours</span>
+            <span>Décisions</span>
           </div>
 
           {/* drop down choisir le critere de filter */}
@@ -282,7 +282,7 @@ const Consulter_D = () => {
                     </td> */}
 
                     <td> {d.id_decision} </td>
-                    <td> {d.date_decision.substr(0, 10)} </td>
+                    <td> {new Date(d.date_decision).toLocaleDateString()} </td>
                     <td> {d.id_reunion} </td>
                     <td> {d.id_recours} </td>
                     <td className={(d.decision_sujet !== null && d.decision_sujet.toLowerCase() === "accepté")  ? "accepté" : "rejeté"} > 
