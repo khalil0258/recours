@@ -7,17 +7,20 @@ import ChoixCommission from "../../../components/recours_controllers/ChoixCommis
 import Choix_objet from "../../../components/recours_controllers/Choix_objet";
 import JoindreFiles from "../../../components/recours_controllers/JoindreFiles";
 import Message_valide from "../../../components/recours_controllers/Message_valide";
+import { useSelector } from "react-redux";
 
 const Effectuer = () => {
   const [som, setSom] = useState([]);
   const [selectedStep, setSelectedStep] = useState({ etape: 1, valide: false });
   const [stepe, setStepe] = useState(1);
   const [errore, setErrore] = useState({ error: false, message: "" });
+  const userInfos = useSelector((state) => state.auth.userInfos);
   const [checking, setChecking] = useState({
     type: null,
     input1: "",
     input2: "",
   });
+  console.log(userInfos.userinfos);
   const [accuse, setAccuse] = useState({});
   // console.log(new Date().getTime());
   const [formData, setFormData] = useState({
@@ -55,7 +58,7 @@ const Effectuer = () => {
     //console.log(formData, stepe);
     if (stepe === 1) {
       let valide = event.target.value;
-
+      console.log(valide);
       setSelectedStep({ etape: 1, valide: !!valide });
     }
     if (stepe === 3 && !!formData.objet.trim().length) {
@@ -84,8 +87,8 @@ const Effectuer = () => {
         const path = JSON.stringify({
           emetteur: formData.commission === "Locale" ? "" : "assure",
           commission: formData.commission,
-          id_assure: 1,
-          id_agence: 1,
+          id_assure: userInfos?.userinfos?.id_assure,
+          id_agence: userInfos?.userinfos?.id_agence,
           motif: formData.commission === "Locale" ? null : formData.motif,
           volet: formData.volet,
           objet: formData.objet,
@@ -122,11 +125,9 @@ const Effectuer = () => {
         });
       }
     } else if (stepe === 2) {
-      // console.log("checkin", formData.motif);
+      //console.log("checkin");
       //console.log(checking.type);
-      if (formData.commission === "National" && formData.motif.length > 1) {
-        // hna yesra ga3 logic ta3 verifiication
-        //console.log(checking.type === 3);
+      if (formData.commission === "Nationale" && formData.motif.length > 1) {
         if (
           checking.type === 1 &&
           checking.input1.trim().length > 0 &&
@@ -185,7 +186,8 @@ const Effectuer = () => {
             });
           }
         } else if (checking.type === 3 && checking.input1.trim().length > 0) {
-          if (checking.input1 < 100000) {
+          console.log("first");
+          if (checking.input1 < 1000000) {
             console.log("montant", stepe, errore);
             setErrore({
               error: true,
@@ -235,7 +237,7 @@ const Effectuer = () => {
     }
     //console.log("swwlw", selectedStep);
   };
-  // steps
+
   const steps = [
     { name: "Avertissement", number: 1 },
     { name: "Choix de commission", number: 2 },
@@ -259,7 +261,10 @@ const Effectuer = () => {
         </div>
         <div className="effectuer_body">
           {stepe === 1 ? (
-            <Avertissement handleSelectedStep={handleSelectedStep} />
+            <Avertissement
+              handleSelectedStep={handleSelectedStep}
+              selectedStep={selectedStep}
+            />
           ) : stepe === 2 ? (
             <ChoixCommission
               handleSelectedStep={handleSelectedStep}

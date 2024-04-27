@@ -13,31 +13,29 @@ const ChoixCommission = ({
 
   const handleChangeReason = (event) => {
     console.log(checking, choixCommission);
-    // setErrore({});
+
     setFormData((prev) => ({
       ...prev,
       motif: formData?.commission === "Locale" ? "" : event.target.value,
     }));
-    if (choixCommission === "National") {
+    if (choixCommission === "Nationale") {
       setChecking((prev) => ({
         ...prev,
         type:
-          event.target.value === "Decision"
+          event.target.value === "Contester la décision de la commission locale"
             ? 1
-            : event.target.value === "Delais"
+            : event.target.value ===
+              "Le délai de la réponse de la commission locale a dépassé 60 jours"
             ? 2
-            : event.target.value === "Montant"
+            : event.target.value === "Montant PR/MR supérieur à 1 000 000 DA"
             ? 3
             : null,
       }));
-      console.log(checking);
+
       setSelectedReason(event.target.value);
-      // console.log(selectedReason, event.target.value);
     }
   };
-  useEffect(() => {
-    // console.log(checking);
-  }, [checking.type]);
+
   useEffect(() => {
     if (!!formData.motif) {
       setSelectedReason(formData?.motif);
@@ -45,7 +43,6 @@ const ChoixCommission = ({
     if (!!formData.commission) {
       setChoixCommission(formData?.commission);
     }
-    // console.log
   }, [formData.motif]);
 
   return (
@@ -75,14 +72,14 @@ const ChoixCommission = ({
         </label>
         <label
           className={`input_holder ${
-            formData?.commission === "National" && "selected_input"
+            formData?.commission === "Nationale" && "selected_input"
           }`}
           onClick={() => {
-            setChoixCommission("National");
+            setChoixCommission("Nationale");
             setFormData((prev) => ({
               ...prev,
 
-              commission: "National",
+              commission: "Nationale",
             }));
           }}
         >
@@ -90,12 +87,12 @@ const ChoixCommission = ({
             type="radio"
             name="clrpq"
             value="clrpq"
-            checked={formData?.commission === "National" && true}
+            checked={formData?.commission === "Nationale" && true}
           />
           LA COMMISSION National DE RECOURS PRÉALABLE QUALIFIÉE
         </label>
       </div>
-      {formData?.commission === "National" && (
+      {formData?.commission === "Nationale" && (
         <div className="national_verification fade">
           <div>
             <select
@@ -106,19 +103,22 @@ const ChoixCommission = ({
               <option value="" selected hidden>
                 Pourquoi faites-vous un recours à la commission locale ?
               </option>
-              <option value="Decision">
+              <option value="Contester la décision de la commission locale">
                 Contester la décision de la commission locale
               </option>
-              <option value="Delais">
+              <option
+                value="Le délai de la réponse de la commission locale a dépassé 60
+                jours"
+              >
                 Le délai de la réponse de la commission locale a dépassé 60
                 jours
               </option>
-              <option value="Montant">
+              <option value="Montant PR/MR supérieur à 1 000 000 DA">
                 Montant PR/MR supérieur à 1 000 000 DA
               </option>
             </select>
           </div>
-          {selectedReason === "Montant" ? (
+          {selectedReason === "Montant PR/MR supérieur à 1 000 000 DA" ? (
             <div className="montant">
               <input
                 value={
@@ -139,7 +139,8 @@ const ChoixCommission = ({
                 }}
               />
             </div>
-          ) : selectedReason === "Decision" ? (
+          ) : selectedReason ===
+            "Contester la décision de la commission locale" ? (
             <div className="Decision">
               <input
                 value={
