@@ -69,6 +69,11 @@ const Effectuer = () => {
 
   // handle next pour suivant button
   const handleNext = async () => {
+    console.log(
+      "dfdfd1",
+      checking.type === 3 && checking.input1.trim().length > 0,
+      stepe
+    );
     console.log(stepe, selectedStep.etape, selectedStep.valide, formData.objet);
     // console.log(formData, stepe, selectedStep?.valide);
     if (stepe === 4) {
@@ -125,11 +130,9 @@ const Effectuer = () => {
         });
       }
     } else if (stepe === 2) {
-      // console.log("checkin", formData.motif);
+      console.log("checkin");
       console.log(checking.type);
-      if (formData.commission === "National" && formData.motif.length > 1) {
-        // hna yesra ga3 logic ta3 verifiication
-        console.log(checking.type === 3);
+      if (formData.commission === "Nationale" && formData.motif.length > 1) {
         if (
           checking.type === 1 &&
           checking.input1.trim().length > 0 &&
@@ -188,6 +191,7 @@ const Effectuer = () => {
             });
           }
         } else if (checking.type === 3 && checking.input1.trim().length > 0) {
+          console.log("first");
           if (checking.input1 < 1000000) {
             console.log("montant", stepe, errore);
             setErrore({
