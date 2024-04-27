@@ -58,7 +58,7 @@ const Effectuer = () => {
     console.log(formData, stepe);
     if (stepe === 1) {
       let valide = event.target.value;
-
+      console.log(valide);
       setSelectedStep({ etape: 1, valide: !!valide });
     }
     if (stepe === 3 && !!formData.objet.trim().length) {
@@ -188,7 +188,7 @@ const Effectuer = () => {
             });
           }
         } else if (checking.type === 3 && checking.input1.trim().length > 0) {
-          if (checking.input1 < 100000) {
+          if (checking.input1 < 1000000) {
             console.log("montant", stepe, errore);
             setErrore({
               error: true,
@@ -238,7 +238,7 @@ const Effectuer = () => {
     }
     console.log("swwlw", selectedStep);
   };
-  // steps
+
   const steps = [
     { name: "Avertissement", number: 1 },
     { name: "Choix de commission", number: 2 },
@@ -262,7 +262,10 @@ const Effectuer = () => {
         </div>
         <div className="effectuer_body">
           {stepe === 1 ? (
-            <Avertissement handleSelectedStep={handleSelectedStep} />
+            <Avertissement
+              handleSelectedStep={handleSelectedStep}
+              selectedStep={selectedStep}
+            />
           ) : stepe === 2 ? (
             <ChoixCommission
               handleSelectedStep={handleSelectedStep}

@@ -1,6 +1,7 @@
 import React from "react";
 
-const Avertissement = ({ handleSelectedStep }) => {
+const Avertissement = ({ handleSelectedStep, selectedStep }) => {
+  console.log(selectedStep);
   return (
     <div className="avertissement_body fadeTranslate">
       <h3>Avertissement</h3>
@@ -39,7 +40,11 @@ const Avertissement = ({ handleSelectedStep }) => {
         </div>
       </div>
       <div className="confirmation">
-        <input type="radio" onChange={handleSelectedStep} />
+        <input
+          type="radio"
+          onChange={handleSelectedStep}
+          checked={!!selectedStep?.valide}
+        />
         J’ai lu et j’accepte les conditions générales d’utilisation.
       </div>
     </div>
