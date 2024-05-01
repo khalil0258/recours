@@ -1,7 +1,7 @@
 import React from "react";
 
 const Avertissement = ({ handleSelectedStep, selectedStep }) => {
-  console.log(selectedStep);
+  //console.log(selectedStep);
   return (
     <div className="avertissement_body fadeTranslate">
       <h3>Avertissement</h3>
@@ -44,8 +44,9 @@ const Avertissement = ({ handleSelectedStep, selectedStep }) => {
           type="radio"
           onChange={handleSelectedStep}
           checked={!!selectedStep?.valide}
+          id="accepte"
         />
-        J’ai lu et j’accepte les conditions générales d’utilisation.
+        <label htmlFor="accepte">J’ai lu et j’accepte les conditions générales d’utilisation.</label>
       </div>
     </div>
   );

@@ -4,6 +4,8 @@ import {
   Routes,
   Route,
   useNavigate,
+  useLocation,
+  useParams,
 } from "react-router-dom";
 
 import ProtectedRoutes from "../helpers/ProtectedRoutes";
@@ -18,10 +20,11 @@ import { checkIsConnected } from "../redux/actions/authActions";
 
 const RouteContainer = () => {
   const dispatch = useDispatch();
-
+   
+  
   const userInfos = useSelector((state) => state.auth?.userInfos);
   const loading = useSelector((state) => state.auth?.loading);
-  console.log(userInfos);
+  //console.log(userInfos);
   useEffect(() => {
     // Dispatch the checkIsConnected action when the component mounts
     dispatch(checkIsConnected());

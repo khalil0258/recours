@@ -4,10 +4,11 @@ import Step from "../../../components/recours_controllers/Step";
 import { checkTheLocal, getUserInfos, soumetre_recours } from "../../../api";
 import Avertissement from "../../../components/recours_controllers/Avertissement";
 import ChoixCommission from "../../../components/recours_controllers/ChoixCommission";
-import Choix_objet from "../../../components/recours_controllers/Choix_objet";
+import ChoixObjet from "../../../components/recours_controllers/Choix_objet";
 import JoindreFiles from "../../../components/recours_controllers/JoindreFiles";
-import Message_valide from "../../../components/recours_controllers/Message_valide";
+import MessageValide from "../../../components/recours_controllers/Message_valide";
 import { useSelector } from "react-redux";
+import ErreurMessage from './../../../components/message_erreur/ErreurMessage'
 
 const Effectuer = () => {
   const [som, setSom] = useState([]);
@@ -20,7 +21,7 @@ const Effectuer = () => {
     input1: "",
     input2: "",
   });
-  console.log(userInfos.userinfos);
+  // console.log(userInfos.userinfos);
   const [accuse, setAccuse] = useState({});
   // console.log(new Date().getTime());
   const [formData, setFormData] = useState({
@@ -58,7 +59,7 @@ const Effectuer = () => {
     //console.log(formData, stepe);
     if (stepe === 1) {
       let valide = event.target.value;
-      console.log(valide);
+      //console.log(valide);
       setSelectedStep({ etape: 1, valide: !!valide });
     }
     if (stepe === 3 && !!formData.objet.trim().length) {
@@ -96,12 +97,12 @@ const Effectuer = () => {
         //console.log("path", path, typeof path);
         let response = await soumetre_recours(path, dataForme);
         //console.log(response?.request.statusText);
+        
         if (
           response?.status === 200 &&
           response?.data.success === "Recours ajoute avec succes"
         ) {
           await getUserInfos().then((res) => {
-            //console.log(res);
             setAccuse({
               nom: res.data?.data[0]?.nom,
               prenom: res.data?.data[0]?.prenom,
@@ -112,6 +113,7 @@ const Effectuer = () => {
               recours: formData?.objet,
               pieces: "recours ,decision de clrpq ....", // hadi dok nbedlo fiha 3la 7sab recours
               commission: formData?.commission,
+              numDossier: response?.data.numDossier,
             });
             setSelectedStep({ etape: 4, valide: true });
           });
@@ -120,97 +122,127 @@ const Effectuer = () => {
         setErrore({
           error: true,
           message: !!formData.firstFile
-            ? "fill the second input"
-            : "fill the first input",
+            ? "Veuillez joindre tous les documents obligatoires"
+            : "Veuillez joindre tous les documents obligatoires",
         });
       }
     } else if (stepe === 2) {
       //console.log("checkin");
       //console.log(checking.type);
       if (formData.commission === "Nationale" && formData.motif.length > 1) {
-        if (
-          checking.type === 1 &&
-          checking.input1.trim().length > 0 &&
-          checking.input2.trim().length > 0
-        ) {
-          const response1 = await checkTheLocal(
-            checking.input1,
-            checking.input2,
-            1
-          );
-          if (
-            response1?.data.message !==
-            "Ce recours est déjà effectué au niveau local"
-          ) {
-            setErrore({ error: true, message: response1?.data.message });
-          } else {
-            setErrore({});
-            setSelectedStep({ etape: 2, valide: true });
-            setStepe((prev) => prev + 1);
-          }
-          // console.log(response1);
-        } else if (checking.type === 2 && checking.input1.trim().length > 0) {
-          // delais type
-          //console.log(new Date(checking.input1).toISOString());
-          const oldDate = new Date(checking.input1);
-          const result = isDaysOlder(oldDate, new Date(), 60);
-          //console.log("ress", result);
-          if (!!result) {
-            setErrore({});
-            const year = oldDate.getFullYear(); // Get the year (e.g., 2023)
-            const month = oldDate.getMonth() + 1; // Get the month (0-indexed, so add 1)
-            const day = oldDate.getDate(); // Get the day of the month (1-31)
+        if (checking.type === 1) {
 
-            // Construct a date string in the format "YYYY-MM-DD"
-            const formattedDate = `${year}-${
-              month < 10 ? "0" + month : month
-            }-${day < 10 ? "0" + day : day}`;
-
-            //console.log("for", formattedDate); // Output: "2023-03-28" (for example)
-            const response2 = await checkTheLocal(formattedDate, "", 2);
-            // console.log(response2);
+          if(checking.input1.trim().length === 0 || checking.input2.trim().length === 0){
+            setErrore({error: true, message: "Veuillez renseiner le numéro de décision ainsi que le numéro de réunion"})
+          }else{
+            const response1 = await checkTheLocal(
+              checking.input1,
+              checking.input2,
+              1
+            );
             if (
-              response2?.data.message !==
+              response1?.data.message !==
               "Ce recours est déjà effectué au niveau local"
             ) {
-              setErrore({ error: true, message: response2?.data?.message });
+              setErrore({ error: true, message: response1?.data.message });
             } else {
               setErrore({});
               setSelectedStep({ etape: 2, valide: true });
               setStepe((prev) => prev + 1);
             }
-          } else {
-            setErrore({
-              error: true,
-              message: "la date que vous avez saisi n'a pas depassé 60 jours",
-            });
           }
-        } else if (checking.type === 3 && checking.input1.trim().length > 0) {
-          console.log("first");
-          if (checking.input1 < 1000000) {
-            console.log("montant", stepe, errore);
-            setErrore({
-              error: true,
-              message: "montant inferieur a 100 millions centimes",
-            });
-          } else {
-            setErrore({});
-            setSelectedStep({ etape: 3, valide: true });
-            setStepe((prev) => prev + 1);
+
+        } else if (checking.type === 2) {
+
+          if(checking.input1.trim().length === 0){
+
+            setErrore({error: true, message: "Veuillez renseiner la date à laquelle vous avez effectué votre recours"})
+
+          }else{
+
+            const oldDate = new Date(checking.input1);
+            const result = isDaysOlder(oldDate, new Date(), 60);
+            //console.log("ress", result);
+            if (!!result) {
+              setErrore({});
+              const year = oldDate.getFullYear(); // Get the year (e.g., 2023)
+              const month = oldDate.getMonth() + 1; // Get the month (0-indexed, so add 1)
+              const day = oldDate.getDate(); // Get the day of the month (1-31)
+
+              // Construct a date string in the format "YYYY-MM-DD"
+              const formattedDate = `${year}-${
+                month < 10 ? "0" + month : month
+              }-${day < 10 ? "0" + day : day}`;
+
+              //console.log("for", formattedDate); // Output: "2023-03-28" (for example)
+              const response2 = await checkTheLocal(formattedDate, "", 2);
+              // console.log(response2);
+              if (
+                response2?.data.message !==
+                "Ce recours est déjà effectué au niveau local"
+              ) {
+                setErrore({ error: true, message: response2?.data?.message });
+              } else {
+                setErrore({});
+                setSelectedStep({ etape: 2, valide: true });
+                setStepe((prev) => prev + 1);
+              }
+            } else {
+              setErrore({
+                error: true,
+                message: "La date de votre recours n'a pas depassé 60 jours",
+              });
+            }
+
           }
+
+        } else if (checking.type === 3) {
+
+          if(checking.input1.trim().length === 0){
+
+            setErrore({error: true, message: "Veuillez renseiner le montant de votre PR et/ou MR"})
+
+          }else{
+
+            if (checking.input1 < 1000000) {
+              setErrore({
+                error: true,
+                message: "Il faut que le montant soit supérieur à 1 000 000 DA pour que vous puissiez effectuer votre recours à la commission nationale",
+              });
+            } else {
+              setErrore({});
+              setSelectedStep({ etape: 3, valide: true });
+              setStepe((prev) => prev + 1);
+            }
+
+          }
+
         }
       } else if (formData.commission === "Locale") {
         // setErrore({});
         setSelectedStep({ etape: stepe, valide: true });
         setStepe((prev) => prev + 1);
       }
-    } else if (stepe < 4 && selectedStep?.valide && selectedStep?.etape != 2) {
-      //console.log(stepe);
-      //console.log("sed", selectedStep);
-      //console.log("sed", !!formData.objet);
-      setStepe((prev) => prev + 1);
+    } else if (stepe === 1) {
+
+      if(selectedStep.etape === 1 && !selectedStep.valide){
+        setErrore({error: true, message: "Vous devriez accepter les conditions générales d'utilisation"})
+      }else{
+        setErrore({})
+        setStepe((prev) => prev + 1);
+      }
+      
+    } else if(stepe === 3){
+
+      if(formData.objet === ""){
+        setErrore({error: true, message: "Veuillez choisir l'objet de votre recours"})
+      }else{
+        setErrore({})
+        setStepe((prev) => prev + 1);
+      }
+
     }
-    // console.log(stepe, selectedStep, selectedStep[stepe - 1]?.valide);s
+    
   };
 
   // Function to check if a date is a certain number of days older than another date
@@ -234,6 +266,7 @@ const Effectuer = () => {
     //console.log(formData);
     if (stepe > 1) {
       setStepe((prev) => prev - 1);
+      setErrore({})
     }
     //console.log("swwlw", selectedStep);
   };
@@ -241,14 +274,14 @@ const Effectuer = () => {
   const steps = [
     { name: "Avertissement", number: 1 },
     { name: "Choix de commission", number: 2 },
-    { name: "choix de l objet", number: 3 },
-    { name: "joinde les documents", number: 4 },
+    { name: "choix d'objet", number: 3 },
+    { name: "joindre les documents", number: 4 },
   ];
   return (
     <div className="effectuer">
       <div className="main_holder">
-        <h3>Recours</h3>
-        <h5>Deposer un Recours</h5>
+        <h3>Soumettre un Recours</h3>
+        <h5>Déposer votre Recours ici</h5>
         <div className="steps_holder">
           {steps?.map((step, index) => (
             <Step
@@ -275,7 +308,7 @@ const Effectuer = () => {
               formData={formData}
             />
           ) : stepe === 3 ? (
-            <Choix_objet
+            <ChoixObjet
               handleSelectedStep={handleSelectedStep}
               formData={formData}
               setFormData={setFormData}
@@ -288,10 +321,10 @@ const Effectuer = () => {
             />
           )}
           {/* message error  */}
-          {stepe !== 1 && !!errore?.error && (
-            <div className="error_message">
-              <p>{errore.message}</p>
-            </div>
+          {!!errore?.error && (
+           
+              <ErreurMessage message={errore.message} />
+            
           )}
           {/* suivant bouton */}
           <div className="btn_holder">
@@ -307,7 +340,7 @@ const Effectuer = () => {
         </div>
       </div>
       {selectedStep.etape === 4 && !!selectedStep?.valide && (
-        <Message_valide data={accuse} />
+        <MessageValide data={accuse} />
       )}
     </div>
   );

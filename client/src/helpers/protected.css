@@ -10,7 +10,7 @@
 
 .app_container .maine_container{
     /* overflow-y: auto; */
-    width: 76.6vw;
+    width: calc(100% - 305px);
   overflow-x: hidden;
     height: 100vh;
      background-color:#F9FBFC;
@@ -21,15 +21,17 @@
   
   }
   .expand{
-    width: 100vw !important;
- 
-    
+    /* width: 100vw !important; */
+    width: calc(100% - 85px) !important;
   }
   .main{
     position: relative;
     top: 60px;
     width:100%;
     padding: 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
    }
 
    
@@ -37,7 +39,7 @@
 
     .app_container .maine_container{
       /* overflow-y: auto; */
-      width:100vw;
+      width:100vw !important;
  
     
     }

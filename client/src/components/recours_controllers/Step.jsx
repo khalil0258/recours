@@ -17,7 +17,7 @@ const Step = ({ number, name, selectedStep }) => {
     } else if (number === selectedStep) {
       setActiveLines(false);
     }
-    console.log("ee", activeSteps, selectedStep);
+    //console.log("ee", activeSteps, selectedStep);
   }, [selectedStep]);
   return (
     <div className="step">

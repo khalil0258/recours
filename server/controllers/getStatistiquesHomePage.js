@@ -16,18 +16,18 @@ const getStatistiques = async (req, res) => {
   }
 
   //statistiques des recours
-  const sql = "select statut from recours"
-  db.query(sql, (err, result) => {
+  const sql = "select statut from recours where id_assure = ?"
+  db.query(sql,[req.session?.userinfos?.id_assure], (err, result) => {
     if(err) 
         return res.json({statut: "erreur", message: "Une erreur est survenue"})
     else {
       stat.nb_recours = result.length;
       result.forEach((r) => {
-          if (r.statut === "en cours de traitement") {
+          if (r.statut.toLowerCase() === "en cours de traitement") {
               stat.nb_recours_en_cours_de_traitement++;
-          }else if(r.statut === "annulé") {
+          }else if(r.statut.toLowerCase() === "annulé") {
             stat.nb_recours_annule++
-          }else if(r.statut === "traité") {
+          }else if(r.statut.toLowerCase() === "traité") {
             stat.nb_recours_traite++
           }
       });
@@ -36,16 +36,16 @@ const getStatistiques = async (req, res) => {
   })
 
   //statistiques des decisions
-  const sql2 = "select decision_forme, decision_sujet from decisions"
-  db.query(sql2, (err, result) => {
+  const sql2 = "select decision_forme, decision_sujet from decisions where id_assure = ?"
+  db.query(sql2,[req.session?.userinfos?.id_assure], (err, result) => {
     if(err) 
         return res.json({statut: "erreur", message: "Une erreur est survenue"})
     else {
       stat.nb_decisions = result.length;
       result.forEach((d) => {
-          if (d.decison_sujet === "accordé") {
+          if (d.decision_sujet !== null && d.decision_sujet.toLowerCase() === "accepté") {
               stat.nb_decisions_accorde++;
-          }else if(d.decision_forme === "rejeté" || d.decision_sujet === "rejeté") {
+          }else {
             stat.nb_decisions_rejete++
           }
       });

@@ -1,10 +1,8 @@
 
-
-
 .main_holder{
 width: 94%;
 margin: 0 auto;
-padding: 50px 70px;
+padding: 30px 50px !important;
 background-color: white;
 box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -13,6 +11,7 @@ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     gap: 1rem;
     /* background-color: red; */
     width: 100%;
+    margin-top: 25px;
 }
 .main_holder h3{
     font-size: 30px;
@@ -72,7 +71,7 @@ justify-content: center;
     font-size: 18px;
 }
 .effectuer_body{
-    margin-top: 1rem;
+    margin-top: 0rem !important;
 }
  
 .effectuer_body h3{
@@ -121,7 +120,7 @@ padding-block: .5rem;
     align-items: center;
     gap: 1rem;
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 2rem;
     justify-content: flex-end;   
  }
  .btn_holder >button{
@@ -149,6 +148,9 @@ padding-block: .5rem;
  }
 
  /* maintenant choix commission page  */
+ .objets_container {
+   margin-bottom: 25px;
+ }
  .input_holder{
     width: 100%;
     padding: 1.6rem 1rem;
@@ -174,7 +176,7 @@ padding-block: .5rem;
  .national_verification{
     width: 100%;
     border-top: 1px solid gray;
-    padding: 1rem 0;
+    padding: 1rem 0 0 0 !important;
 
  }
  .national_verification .national_verification_choices{
@@ -201,7 +203,7 @@ padding-block: .5rem;
  .montant{
     width: 100%;
     margin: 1rem 0;
- 
+    margin-bottom: 23px !important;
  }
  .montant >input {
     width:100%;
@@ -214,10 +216,11 @@ padding-block: .5rem;
  /* si decision */
  .Decision{
     width: 100%;
-    margin: 1rem 0;
+    margin: 1rem 0 !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 23px !important;
  }
  .Decision >input{
     width:48%;
@@ -229,8 +232,11 @@ padding-block: .5rem;
  /* delais 
   */
   .Delais{
+   display: flex;
+   flex-direction: column;
     width: 100%;
     margin: 1rem 0;
+    margin-bottom: 23px !important;
   }
   .Delais >input{
     width:50%;
@@ -238,8 +244,9 @@ padding-block: .5rem;
     border: 1px solid rgba(0,0,0,0.4);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 5px;
-      outline: none;
-      cursor: pointer;
+   outline: none;
+   cursor: pointer;
+   margin-top: 3px;
  }
 
  .error_message{
@@ -269,6 +276,7 @@ padding-bottom: 1rem;
  /* joindre documment page  */
  .joindre_document_body{
     width: 100%;
+    margin-bottom: 25px;
  }
  .document_holder{
     width: 100%;

@@ -3,6 +3,7 @@ import "./Compte.css";
 import { getUserInfos, updateInfos } from "../../../api";
 import ModifyPassword from "../../../components/compteComponents/ModifyPassword";
 import CompletePopup from "../../../components/compteComponents/CompletePopup";
+import ErreurMessage from './../../../components/message_erreur/ErreurMessage'
 
 const Compte = () => {
   const [infos, setInfos] = useState({});
@@ -22,26 +23,27 @@ const Compte = () => {
   }, []);
   // update profile
   const updateProfile = async () => {
-    console.log(isValidEmail(infos.email), infos.numero_telephone);
+    //console.log(isValidEmail(infos.email), infos.numero_telephone);
     if (isValidEmail(infos.email) && infos.numero_telephone.length === 10) {
       const response = await updateInfos({
         email: infos.email,
         numero_telephone: infos.numero_telephone,
       });
-      console.log(response);
+      //console.log(response);
       if (
         response?.status === 200 &&
         response?.data.statut === "le profil a été mis à jour avec succès"
       ) {
         setShow({ show: true, password: false });
+        setError({});
       }
     } else {
       if (!isValidEmail(infos.email)) {
-        setError({ error: true, message: "verifie si l email est valide " });
+        setError({ error: true, message: "E-mail invalide" });
       } else {
         setError({
           error: true,
-          message: "verifie si le numero de telephone est valide",
+          message: "Veuilliez saisir un numéro de téléphone correct",
         });
       }
     }
@@ -171,7 +173,7 @@ const Compte = () => {
           showhow={show}
         />
       </div>
-      {!!error.error && <div className="message_error"> {error.message}</div>}
+      {!!error.error && <ErreurMessage message = {error.message} /> }
       <div className="infomations_general lastone">
         <button className="register_new_data" onClick={updateProfile}>
           Enregistrer

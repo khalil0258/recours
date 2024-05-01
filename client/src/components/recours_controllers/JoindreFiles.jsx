@@ -26,7 +26,7 @@ const JoindreFiles = ({ handleFileChange, formData, setFormData }) => {
 
   return (
     <div className="joindre_document_body fadeTranslate">
-      <h3>Joindre documents</h3>
+      <h3>Joindre les documents</h3>
       {/* document recours  */}
       <div className="document_holder">
         <h4>Recours Ecrit</h4>
@@ -67,7 +67,7 @@ const JoindreFiles = ({ handleFileChange, formData, setFormData }) => {
       {/* c a depend de recours  */}
 
       <div className="document_holder">
-        <h4>Decision de commission Local</h4>
+        <h4>Décision de la commission Locale</h4>
         <div className="remarque">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
           architecto impedit quia odit adipisci maxime ad aperiam nesciunt
@@ -103,7 +103,7 @@ const JoindreFiles = ({ handleFileChange, formData, setFormData }) => {
         </label>
         {/* now piece complementaires  */}
         <div className="document_holder">
-          <h4>Pieces Complementaires</h4>
+          <h4>Pièces Complémentaires</h4>
           <div className="remarque">
             [max3] Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Corrupti architecto impedit quia odit adipisci maxime ad aperiam

@@ -44,14 +44,34 @@
     border-bottom: 3px solid #111827;
 }
 
+#statut{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#vert, #rouge, #jaune{
+    text-transform: capitalize;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 #vert{
-    color: green;
+    color: rgb(255, 255, 255);
+    background-color: chartreuse;
+    width: 190px;
+    padding: 8px ;
+    font-weight: 700;
 }
 #jaune{
-    color: rgb(218, 218, 53);
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 217, 0);
+    padding: 8px;
 }
 #rouge{
-    color: red;
+    color: rgb(255, 255, 255);
+    background-color: brown;
 }
 
 #afficher{

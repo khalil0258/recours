@@ -7,8 +7,9 @@ import './protected.css';
 
 function ProtectedRoutes({ isAuth,loading }) {
     const [openBar, setOpenBar] = useState(true);
-    const [phone, setPhone] = useState(false);
-  console.log(isAuth)
+    const [phone, setPhone] = useState(false);  
+   
+  // console.log(isAuth)
     const sidebarOpener = (value) => {
       setOpenBar(value);
     };
@@ -18,7 +19,7 @@ if( window.innerWidth<=650){
   setPhone(true)
 }
   },[])
-
+// console.log(isAuth)
   if (isAuth===false&&loading===false ) {
     return <Navigate to="/"/>;
   }
@@ -31,7 +32,7 @@ if( window.innerWidth<=650){
       <div className={`maine_container ${!openBar && "expand"}`}>
         <Header sidebarOpener={sidebarOpener} openBar={openBar}/>
 
-        <div className={`main ${!openBar &&"expand"}`}>
+        <div className='main'>
           <Outlet/>
         </div>
         

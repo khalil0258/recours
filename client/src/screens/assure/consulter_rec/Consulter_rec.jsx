@@ -109,30 +109,47 @@ const Consulter_rec = () => {
         <div className="recours_filterInput">
           <select name={filter} onChange={filtrer} id="sel1">
             <option value="placeholder"> Filtrer par {filter} </option>
-            <option value="demande annulation de cotisations">
-              Demande annulation de cotisations
+            <option value="Demande d'annulation de cotisations">
+              Demande d'annulation de cotisations
             </option>
-            <option value="demande de paiement de cotisations">
+            <option value="Demande de paiement de cotisations">
               Demande de paiement de cotisations
             </option>
-            <option value="pénalité et/ou majoration de retard">
+            <option value="Pénalité et/ou majoration de retard">
               Pénalité et/ou majoration de retard
             </option>
-            <option value="revoir le montant de cotisation">
+            <option value="Revoir le montant de cotisation">
               Revoir le montant de cotisation
             </option>
-            <option value="demande de validation ou remboursement de cotisations">
+            <option value="Demande de validation ou remboursement de cotisations">
               Demande de validation ou remboursement de cotisations
             </option>
-            <option value="relatif à l'assurance invalidité">
-              Relatif à l'assurance invalidité
+            <option value="Demande d'allocation d'invalidité">
+              Demande d'allocation d'invalidité
             </option>
-            <option value="realitf aux assurances en natures">
-              Realitf aux assurances en natures
+            <option value="Revoir le montant de l'allocation d'invalidité">
+              Revoir le montant de l'allocation d'invalidité
             </option>
-            <option value="capital décès">Capital décès</option>
-            <option value="augmentation du pension de retraite">
-              Augmentation du pension de retraite
+            <option value="Demande de remboursement des frais de soins">
+              Demande de remboursement des frais de soins
+            </option>
+            <option value="Demande d'annulation de trop perçu des assuraces sociales">
+              Demande d'annulation de trop perçu des assuraces sociales
+            </option>
+            <option value="Demande d'allocation de capital décès">
+            Demande d'allocation de capital décès
+            </option>
+            <option value="Demande de revoir le montant d'allocation de capital décès">
+            Demande de revoir le montant d'allocation de capital décès
+            </option>
+            <option value="Demande de pension ou allocation de réversion">
+              Demande de pension ou allocation de réversion
+            </option>
+            <option value="Revoir le montant de la pension ou allocation de retraite">
+              Revoir le montant de la pension ou allocation de retraite
+            </option>
+            <option value="Demande d'annulation de trop perçu relatif à la retraite">
+              Demande d'annulation de trop perçu relatif à la retraite
             </option>
           </select>
         </div>
@@ -157,7 +174,7 @@ const Consulter_rec = () => {
             <option value="en cours de traitement">
               En cours de traitement
             </option>
-            <option value="annulé">Annulé</option>
+            {/* <option value="annulé">Annulé</option> */}
             <option value="traité">Traité</option>
           </select>
         </div>
@@ -280,7 +297,8 @@ const Consulter_rec = () => {
                     <td> {r.objet} </td>
                     <td> {new Date(r.date).toLocaleDateString()} </td>
                     <td> {r.commission} </td>
-                    <td
+                    <td id="statut">
+                      <span
                       id={
                         r.statut === "traité"
                           ? "vert"
@@ -288,8 +306,9 @@ const Consulter_rec = () => {
                           ? "rouge"
                           : "jaune"
                       }
-                    >
-                      {r.statut}
+                      >
+                        {r.statut}
+                      </span>
                     </td>
                     <td>
                       {/* <Link to={`details_recours/${r.id_recours}`} className='btn btn-primary' onClick={() => setShowDetail(true)}>Détails</Link> */}

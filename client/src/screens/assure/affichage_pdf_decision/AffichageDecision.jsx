@@ -11,7 +11,7 @@ function AffichageDecision({showDecision, setShowDecision}) {
     const [aria, setAria] = useState() ;
 
     const user = useSelector((state) => state.auth?.userInfos);
-      //console.log(user)
+      console.log(user)
 
     const fermer = () => {
         setAria(true);

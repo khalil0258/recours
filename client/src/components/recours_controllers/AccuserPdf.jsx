@@ -53,14 +53,24 @@ const styles = StyleSheet.create({
     left: "30px",
     objectFit: "contain",
   },
-  reception: { textAlign: "center", width: "auto" },
+  reception: { 
+    textAlign: "center",
+    width: "auto", 
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
   accuse: {
     border: "2px solid black",
     padding: "10px 40px",
     textAlign: "center",
     margin: "10px 0",
+    width: "300px"
   },
-  article: { fontSize: "12px" },
+  article: { 
+    fontSize: "12px", 
+    width: "260px"  
+  },
   infosContainer: {
     margin: "60px 0",
     textAlign: "left",
@@ -71,10 +81,10 @@ const styles = StyleSheet.create({
     gap: "20px",
   },
   volet: { marginTop: "20px" },
-  text: { margin: "5px 0 0", fontWeight: "200", fontSize: "12px" },
+  text: { marginBottom: "10px", fontWeight: "200", fontSize: "12px" },
   depose: {
     margin: "20px 30px  0",
-    fontSize: "11px",
+    fontSize: "12px",
   },
   lawContainer: {
     width: "100%",
@@ -89,7 +99,7 @@ const styles = StyleSheet.create({
 
 const AccuserPdf = ({ data }) => {
   const date = new Date().toISOString();
-  console.log(data);
+  //console.log(data);
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -128,19 +138,22 @@ const AccuserPdf = ({ data }) => {
           <View>
             {" "}
             <Text style={styles.text}>
-              Nom et prenom: {data?.nom} {data?.prenom}
+              N° Dossier : {data?.numDossier}
             </Text>
             <Text style={styles.text}>
-              date de naissance: {data?.date_de_naissance}
+              Nom et prenom : {data?.nom} {data?.prenom}
+            </Text>
+            <Text style={styles.text}>
+              Date de naissance : {data?.date_de_naissance}
             </Text>
           </View>
 
-          <Text style={styles.text}>Adresse: {data?.adresse}</Text>
+          <Text style={styles.text}>Adresse : {data?.adresse}</Text>
 
-          <Text style={styles.text}>Recours sur: {data?.recours}</Text>
+          <Text style={styles.text}>Objet de recours : {data?.recours}</Text>
 
-          <Text style={styles.text}>les pieces:{data?.pieces}</Text>
-          <Text style={styles.depose}>depose le {date}</Text>
+          <Text style={styles.text}>Les pieces jointes : {data?.pieces}</Text>
+          <Text style={styles.depose}>deposé le {date.substring(0, 10)}</Text>
         </View>
         <View style={styles.lawContainer}>
           {data?.commission === "National" ? (

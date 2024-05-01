@@ -29,7 +29,7 @@ const changePassword=async(req,res)=>{
         if(err) return res.json({statut: "erreur", message: "Une erreur est survenu, réessayez plus tard"})
     
      
-            return res.json({statut: "le mot de pass est change avec succes" })
+            return res.json({statut: "le mot de passe est change avec succes" })
      
       })
     // }
@@ -53,7 +53,7 @@ const updateProfile=async(req,res)=>{
     const sql='update assures set email=? , numero_telephone=? where id_assure=?';
     db.query(sql,values ,(err, result) => {
       if(err) return res.json({statut: "erreur", message: "Une erreur est survenu, réessayez plus tard"})
-  console.log(result)
+  //console.log(result)
    
           return res.json({statut: "le profil a été mis à jour avec succès" })
    

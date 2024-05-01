@@ -10,7 +10,7 @@ const ModifyPassword = ({ setError, passwordBd, setShow, show }) => {
     confirmed: "",
   });
   const HandlePassword = async () => {
-    console.log("first");
+    //console.log("first");
     if (
       !!password.oldPassword.trim().length &&
       !!password.newPassword.trim().length &&
@@ -19,7 +19,7 @@ const ModifyPassword = ({ setError, passwordBd, setShow, show }) => {
       if (password.newPassword !== password.confirmed) {
         setError({
           error: true,
-          message: "les mots de passe ne correspondent pas",
+          message: "Les mots de passe ne se correspondent pas",
         });
       } else {
         setError({});
@@ -32,15 +32,16 @@ const ModifyPassword = ({ setError, passwordBd, setShow, show }) => {
         const response = await changerMotpass(data);
         if (
           response.status === 200 &&
-          response.data.statut === "le mot de pass est change"
+          response.data.statut === "le mot de passe est change avec succes"
         ) {
-          console.log("first");
-          setShow(true);
-          console.log(show);
+          //console.log("first");
+          setShow({ show: true, password: true });
+          setError({});
+          //console.log(show);
         }
       }
     } else {
-      setError({ error: true, message: "Remplir tout les champs" });
+      setError({ error: true, message: "Veuilliez remplir tout les champs" });
     }
   };
   return (

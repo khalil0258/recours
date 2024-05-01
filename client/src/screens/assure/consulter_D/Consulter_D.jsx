@@ -82,9 +82,9 @@ const Consulter_D = () => {
           copieDecisions = copieDecisions.filter((item) => item.decision_sujet.toLowerCase() === "rejeté"); */
 
         if(value === "rejete"){
-          copieDecisions = copieDecisions.filter((item) => item.decision_sujet.toLowerCase() !== "accepté");
+          copieDecisions = copieDecisions.filter((item) => ( item.decision_sujet === null || item.decision_sujet.toLowerCase() !== "accepté" ));
         }else if(value === "accepte"){
-          copieDecisions = copieDecisions.filter((item) => item.decision_sujet.toLowerCase() === "accepté");
+          copieDecisions = copieDecisions.filter((item) => ( item.decision_sujet !== null && item.decision_sujet.toLowerCase() === "accepté" ));
         }
 
       }

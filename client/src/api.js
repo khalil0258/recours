@@ -24,7 +24,7 @@ export const checkTheLocal=async(id_reunion,id_decision,type)=>{
 
 export const soumetre_recours= async(data,body)=>{
 try { 
-console.log("api",data,...body)
+// console.log("api",data,...body)
     const path=`http://localhost:4000/recours/soumetreRecours?data=${data}`
        const response=await axios.post(path,body);
        return response;
@@ -51,10 +51,10 @@ export const getUserInfos=async()=>{
 // changer le motpass 
 export const changerMotpass=async(body)=>{
    try {
-      console.log(body)
+      //console.log(body)
       const path=`http://localhost:4000/user/changePassword`;
       const response=await axios.put(path,body)
-      console.log(response)
+      //console.log(response)
       return response;
    } catch (error) {
       
@@ -64,10 +64,10 @@ export const changerMotpass=async(body)=>{
 // update user infos 
 export const updateInfos=async(body)=>{
    try {
-      console.log("body",body)
+      //console.log("body",body)
       const path="http://localhost:4000/user/update-profile";
       const response=await axios.put(path,body)
-      console.log(response)
+      //console.log(response)
       return response;
    } catch (error) {
       console.log(error)
@@ -79,7 +79,7 @@ export const checkConnexion=async()=>{
    try {
       const path="http://localhost:4000/auth/isConnected";
       const response=await axios.get(path);
-      console.log("isconnected",response)
+      //console.log("isconnected",response)
       return response;
    } catch (error) {
       console.log(error)
@@ -89,10 +89,10 @@ export const checkConnexion=async()=>{
 // logout 
 export const login_out=async()=>{
    try {
-      console.log(" logout")
+      //console.log(" logout")
       const path="http://localhost:4000/auth/logout";
           const response=await axios.get(path);
-      console.log("logout",response)
+      //console.log("logout",response)
       return response;
    } catch (error) {
       console.log(error)

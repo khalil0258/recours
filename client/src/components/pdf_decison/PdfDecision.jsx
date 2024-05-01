@@ -158,6 +158,8 @@ function PdfDecision({decision, userinfos}) {
     const [recours, setRecours] = useState('') ;
 
     //console.log(userinfos)
+    //console.log(decision)
+
 
     useEffect(() => {
         const id = decision.id_recours;
@@ -180,27 +182,27 @@ function PdfDecision({decision, userinfos}) {
       /* const user = useSelector((state) => state.auth?.userInfos);
       console.log(user) */
 
-      let infos = "" ;
+      let inf = "" ;
       if(recours !== ''){
         if(recours.commission.toLowerCase() === "locale"){
-            infos = 
+            inf = 
                 <Text>
                     - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{new Date(recours.date).toLocaleDateString()}</Text> et concernant : <Text style={styles.bold}>{recours.objet}</Text>.
                 </Text>
             
         }else{
             if(recours.motif.toLowerCase() === "contester la décision de la commission locale")
-                infos = 
+                inf = 
                     <Text>
                         - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{new Date(recours.date).toLocaleDateString()}</Text> et concernant : <Text style={styles.bold}>{recours.objet}</Text>.
                     </Text>
-            else if(recours.motif.toLowerCase() === "montant de pr/mr supérieur à 1 000 000 da")
-                infos = 
+            else if(recours.motif.toLowerCase() === "montant pr/mr supérieur à 1 000 000 da")
+                inf = 
                     <Text>
                         - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{new Date(recours.date).toLocaleDateString()}</Text>, concernant : <Text style={styles.bold}>{recours.objet}</Text> et dont le montant dépasse 1 000 000 DA.
                     </Text>
             else 
-                infos =
+                inf =
                     <Text>
                         - En vertu du recours déposé par M./Mme. <Text style={styles.bold}><Text style={styles.nom}>{userinfos.nom}</Text> <Text style={styles.prenom}>{userinfos.prenom}</Text></Text> affilié à la sécurité sociale sous le numéro <Text style={styles.bold}>{userinfos.numero_ss}</Text>, en date du <Text style={styles.bold}>{new Date(recours.date).toLocaleDateString()}</Text>, concernant : <Text style={styles.bold}>{recours.objet}</Text> et dont la commission locale n'a pas répondu dans un délai de 60 jours à compter de la date de soummission du recours.
                     </Text>
@@ -282,7 +284,7 @@ function PdfDecision({decision, userinfos}) {
 
             <View style={styles.infos}>
                 
-                {infos}
+                {inf}
                 
                 <Text style={styles.infos}>
                     - À la suite des délibérations lors de la réunion tenue le :  <Text style={styles.bold}>{new Date(decision.date_reunion).toLocaleDateString()}</Text>, session numéro :  <Text style={styles.bold}>{decision.id_reunion}</Text>, la commission a décidé:

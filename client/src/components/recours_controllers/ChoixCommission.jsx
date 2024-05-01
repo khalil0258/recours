@@ -13,6 +13,7 @@ const ChoixCommission = ({
 
   const handleChangeReason = (event) => {
     console.log(checking, choixCommission);
+    console.log(selectedReason,event.target.value)
 
     setFormData((prev) => ({
       ...prev,
@@ -33,6 +34,7 @@ const ChoixCommission = ({
       }));
 
       setSelectedReason(event.target.value);
+      setErrore({})
     }
   };
 
@@ -89,7 +91,7 @@ const ChoixCommission = ({
             value="clrpq"
             checked={formData?.commission === "Nationale" && true}
           />
-          LA COMMISSION National DE RECOURS PRÉALABLE QUALIFIÉE
+          LA COMMISSION NATIONALE DE RECOURS PRÉALABLE QUALIFIÉE
         </label>
       </div>
       {formData?.commission === "Nationale" && (
@@ -101,20 +103,19 @@ const ChoixCommission = ({
               className="national_verification_choices"
             >
               <option value="" selected hidden>
-                Pourquoi faites-vous un recours à la commission locale ?
+                Pourquoi faites-vous un recours à la commission nationale ?
               </option>
               <option value="Contester la décision de la commission locale">
                 Contester la décision de la commission locale
               </option>
               <option
-                value="Le délai de la réponse de la commission locale a dépassé 60
-                jours"
+                value="Le délai de la réponse de la commission locale a dépassé 60 jours"
               >
                 Le délai de la réponse de la commission locale a dépassé 60
                 jours
               </option>
               <option value="Montant PR/MR supérieur à 1 000 000 DA">
-                Montant PR/MR supérieur à 1 000 000 DA
+                Montant de PR/MR supérieur à 1 000 000 DA
               </option>
             </select>
           </div>
@@ -125,7 +126,7 @@ const ChoixCommission = ({
                   !!formData.nationalInputs && formData.nationalInputs?.input1
                 }
                 type="number"
-                placeholder="Entrez le montant de PR"
+                placeholder="Renseigner le montant de votre PR et/ou MR. Ex: 1000000"
                 onChange={(event) => {
                   console.log("first2");
                   setChecking((prev) => ({
@@ -147,7 +148,7 @@ const ChoixCommission = ({
                   !!formData.nationalInputs && formData.nationalInputs?.input1
                 }
                 type="number"
-                placeholder="Entrez le numero de reunion"
+                placeholder="Entrez le numéro de réunion"
                 onChange={(event) => {
                   setChecking((prev) => ({
                     ...prev,
@@ -167,7 +168,7 @@ const ChoixCommission = ({
                   !!formData.nationalInputs && formData.nationalInputs?.input2
                 }
                 type="number"
-                placeholder="Entrez le numero de decision"
+                placeholder="Entrez le numéro de décision"
                 onChange={(event) => {
                   setChecking((prev) => ({
                     ...prev,
@@ -184,8 +185,9 @@ const ChoixCommission = ({
               />
             </div>
           ) : (
-            selectedReason === "Delais" && (
+            selectedReason === "Le délai de la réponse de la commission locale a dépassé 60 jours" && (
               <div className="Delais">
+                <label htmlFor="">J'ai effectué mon recours en date de :</label>
                 <input
                   type="date"
                   placeholder="Entrez la date de recours"

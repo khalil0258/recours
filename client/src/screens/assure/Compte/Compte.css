@@ -60,6 +60,9 @@
   color: white ;
   border-radius: 5px;
 }
+.showMotpass{
+  margin-bottom: 30px;
+}
 .lastone{
   display: flex;
   justify-content: flex-end;

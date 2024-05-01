@@ -84,11 +84,11 @@ const Home = () => {
               />
             </i>
             <span className="text">
-              <p>traités</p>
+              <p>Traités</p>
               <h3> {valeurs.nb_recours_traite} </h3>
             </span>
           </li>
-          <li>
+          {/* <li>
             <i className="">
               <img
                 src={iconAnnuler}
@@ -100,7 +100,7 @@ const Home = () => {
               <p>Recours annulés</p>
               <h3> {valeurs.nb_recours_annule} </h3>
             </span>
-          </li>
+          </li> */}
           <li>
             <i className="">
               <img

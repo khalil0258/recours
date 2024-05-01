@@ -12,63 +12,93 @@ const Choix_objet = ({ handleSelectedStep, setFormData, formData }) => {
   // third step function
   const objets = [
     {
-      nom: "demande annulation de cotisations",
+      nom: "Demande d'annulation de cotisations",
       index: 1,
       volet: "cotisations",
       filtre: "cotisations",
     },
     {
-      nom: "demande de paiement de cotisations",
+      nom: "Demande de paiement de cotisations",
       index: 2,
       volet: "cotisations",
       filtre: "cotisations",
     },
     {
-      nom: "pénalité et/ou majoration de retard",
+      nom: "Pénalité et/ou majoration de retard",
       index: 3,
       volet: "cotisations",
       filtre: "cotisations",
     },
     {
-      nom: "revoir le montant de cotisation",
+      nom: "Revoir le montant de cotisation",
       index: 4,
       volet: "cotisations",
       filtre: "cotisations",
     },
     {
-      nom: "demande de validation ou remboursement de cotisations",
+      nom: "Demande de validation ou remboursement de cotisations",
       index: 5,
       volet: "cotisations",
       filtre: "cotisations",
     },
     {
-      nom: "relatif à l'assurance invalidité",
+      nom: "Demande d'allocation d'invalidité",
       index: 6,
       volet: "prestations",
       filtre: "assurance sociale",
     },
     {
-      nom: "realitf aux assurances en natures",
+      nom: "Revoir le montant de l'allocation d'invalidité",
       index: 7,
       volet: "prestations",
       filtre: "assurance sociale",
     },
     {
-      nom: "capital décès",
+      nom: "Demande de remboursement des frais de soins",
       index: 8,
       volet: "prestations",
       filtre: "assurance sociale",
     },
     {
-      nom: "augmentation du pension de retraite",
+      nom: "Demande d'annulation de trop perçu des assuraces sociales",
       index: 9,
+      volet: "prestations",
+      filtre: "assurance sociale",
+    },
+    {
+      nom: "Demande d'allocation de capital décès",
+      index: 10,
+      volet: "prestations",
+      filtre: "assurance sociale",
+    },
+    {
+      nom: "Demande de revoir le montant d'allocation de capital décès",
+      index: 11,
+      volet: "prestations",
+      filtre: "assurance sociale",
+    },
+    {
+      nom: "Demande de pension ou allocation de réversion",
+      index: 12,
+      volet: "prestations",
+      filtre: "retraite",
+    },
+    {
+      nom: "Revoir le montant de la pension ou allocation de retraite",
+      index: 13,
+      volet: "prestations",
+      filtre: "retraite",
+    },
+    {
+      nom: "Demande d'annulation de trop perçu relatif à la retraite",
+      index: 14,
       volet: "prestations",
       filtre: "retraite",
     },
   ];
   return (
     <div className="choix_objet_body fadeTranslate">
-      <h3>Choix Objet </h3>
+      <h3>Choix d'objet </h3>
       {/* les objets existes  */}
       <div className="filters">
         <select
@@ -76,10 +106,10 @@ const Choix_objet = ({ handleSelectedStep, setFormData, formData }) => {
           onChange={handleFiltre}
           className="national_verification_choices filters_objet"
         >
-          <option value="cotisations">cotisations</option>
-          <option value="assurance sociale">assurance sociale</option>
-          <option value="retraite">retraite</option>
-          <option value="tout">tout</option>
+          <option value="tout">Tous les objets</option>
+          <option value="cotisations">Relatifs aux cotisations</option>
+          <option value="assurance sociale">Relatifs aux assurance sociale</option>
+          <option value="retraite">Relatifs à la retraite</option>
         </select>
       </div>
       <div className="objets_container">
